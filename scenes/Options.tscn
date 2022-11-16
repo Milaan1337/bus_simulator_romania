@@ -1,0 +1,63 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/OptionsButton.png" type="Texture" id=1]
+
+[node name="Options" type="Node2D"]
+
+[node name="MainVolume" type="HSlider" parent="."]
+margin_left = 230.0
+margin_top = 120.0
+margin_right = 353.0
+margin_bottom = 136.0
+mouse_default_cursor_shape = 7
+custom_icons/tick = ExtResource( 1 )
+value = 100.0
+
+[node name="MusicVolume" type="HSlider" parent="."]
+margin_left = 231.0
+margin_top = 153.0
+margin_right = 354.0
+margin_bottom = 169.0
+value = 100.0
+
+[node name="UIVolume" type="HSlider" parent="."]
+margin_left = 231.0
+margin_top = 220.0
+margin_right = 354.0
+margin_bottom = 236.0
+value = 100.0
+
+[node name="SoundEffectsVolume" type="HSlider" parent="."]
+margin_left = 230.0
+margin_top = 187.0
+margin_right = 353.0
+margin_bottom = 203.0
+value = 100.0
+
+[node name="MainVolumeText" type="Label" parent="."]
+margin_left = 121.0
+margin_top = 121.0
+margin_right = 213.0
+margin_bottom = 142.0
+text = "Main Volume: "
+
+[node name="MusicVolumeText" type="Label" parent="."]
+margin_left = 116.0
+margin_top = 157.0
+margin_right = 215.0
+margin_bottom = 178.0
+text = "Music Volume: "
+
+[node name="UIVolumeText" type="Label" parent="."]
+margin_left = 76.0
+margin_top = 220.0
+margin_right = 215.0
+margin_bottom = 241.0
+text = "Sound Effect Volume: "
+
+[node name="SoundEffectVolumeText" type="Label" parent="."]
+margin_left = 139.0
+margin_top = 189.0
+margin_right = 231.0
+margin_bottom = 210.0
+text = "UI Volume: "
