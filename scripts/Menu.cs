@@ -1,16 +1,25 @@
 using Godot;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization.Json;
 
 public class Menu : Node2D
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
-    // Called when the node enters the scene tree for the first time.
+    public AudioStreamPlayer2D MainMusic;
     public override void _Ready()
     {
-        
+        File file = new File();
+        file.Open("res://save/options.json", File.ModeFlags.Read);
+        string text = file.GetAsText();
+        ConfigBody jsonfile = JsonConvert.DeserializeObject<ConfigBody>(text);
+        file.Close();
+        GD.Print(jsonfile.MainVolume);
+        GD.Print(jsonfile.MusicVolume);
+        GD.Print(jsonfile.UIVolume);
+        GD.Print(jsonfile.SoundEffectVolume);
+
+        MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
     }
 
     public void _on_PlayButton_pressed(){
@@ -23,9 +32,10 @@ public class Menu : Node2D
         GetTree().Quit();
     }
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+
+    /*
+        public override void _Process(float delta)
+        {
+            MainMusic.VolumeDb -= 0.1f;
+        }*/
 }

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Menu.cs" type="Script" id=1]
-[ext_resource path="res://assets/PlayButton.png" type="Texture" id=2]
-[ext_resource path="res://assets/OptionsButton.png" type="Texture" id=3]
-[ext_resource path="res://assets/ExitButton.png" type="Texture" id=4]
+[ext_resource path="res://assets/Images/OptionsButton.png" type="Texture" id=2]
+[ext_resource path="res://assets/Images/PlayButton.png" type="Texture" id=3]
+[ext_resource path="res://assets/Images/ExitButton.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=5]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,14 +14,14 @@ margin_left = 446.0
 margin_top = 118.0
 margin_right = 596.0
 margin_bottom = 193.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 3 )
 
 [node name="OptionsButton" type="TextureButton" parent="."]
 margin_left = 446.0
 margin_top = 225.0
 margin_right = 596.0
 margin_bottom = 300.0
-texture_normal = ExtResource( 3 )
+texture_normal = ExtResource( 2 )
 
 [node name="ExitButton" type="TextureButton" parent="."]
 margin_left = 446.0
@@ -28,6 +29,12 @@ margin_top = 344.0
 margin_right = 596.0
 margin_bottom = 419.0
 texture_normal = ExtResource( 4 )
+
+[node name="MainMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 519, 268 )
+stream = ExtResource( 5 )
+volume_db = 24.0
+autoplay = true
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
