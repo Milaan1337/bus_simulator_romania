@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/Images/OptionsButton.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Options.cs" type="Script" id=2]
-[ext_resource path="res://assets/Images/ExitButton.png" type="Texture" id=3]
+[ext_resource path="res://assets/Images/Back.png" type="Texture" id=3]
+[ext_resource path="res://assets/Images/Save.png" type="Texture" id=4]
 
 [node name="Options" type="Node2D"]
 script = ExtResource( 2 )
@@ -30,7 +31,7 @@ margin_right = 354.0
 margin_bottom = 236.0
 value = 100.0
 
-[node name="SoundEffectsVolume" type="HSlider" parent="."]
+[node name="SoundEffectVolume" type="HSlider" parent="."]
 margin_left = 230.0
 margin_top = 187.0
 margin_right = 354.0
@@ -73,7 +74,7 @@ margin_bottom = 40.0
 texture_normal = ExtResource( 3 )
 expand = true
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="NameInput" type="TextEdit" parent="."]
 margin_left = 230.0
 margin_top = 75.0
 margin_right = 356.0
@@ -86,4 +87,13 @@ margin_right = 212.0
 margin_bottom = 101.0
 text = "Username: "
 
+[node name="SaveButton" type="TextureButton" parent="."]
+margin_left = 865.0
+margin_top = 512.0
+margin_right = 971.0
+margin_bottom = 561.0
+texture_normal = ExtResource( 4 )
+expand = true
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_SaveButton_pressed"]

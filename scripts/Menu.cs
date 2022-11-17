@@ -20,6 +20,7 @@ public class Menu : Node2D
         GD.Print(jsonfile.SoundEffectVolume);
 
         MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
+        MainMusic.VolumeDb = jsonfile.MainVolume;
     }
 
     public void _on_PlayButton_pressed(){
