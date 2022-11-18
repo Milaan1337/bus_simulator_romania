@@ -18,6 +18,7 @@ public class Menu : Node2D
         GD.Print(jsonfile.MusicVolume);
         GD.Print(jsonfile.UIVolume);
         GD.Print(jsonfile.SoundEffectVolume);
+        GD.Print(jsonfile.Name);
 
         MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
         MainMusic.VolumeDb = jsonfile.MainVolume;
