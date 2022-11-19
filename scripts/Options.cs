@@ -15,15 +15,24 @@ public class Options : Node2D
     public TextEdit NameInput;
     public override void _Ready()
     {
-    }
-
-    public void _on_SaveButton_pressed()
-    {
         MainVolume = GetNode("MainVolume") as HSlider;
         MusicVolume = GetNode("MusicVolume") as HSlider;
         UIVolume = GetNode("UIVolume") as HSlider;
         SoundEffectVolume = GetNode("SoundEffectVolume") as HSlider;
         NameInput = GetNode("NameInput") as TextEdit;
+
+        string text = File.ReadAllText(@"save/options.json");
+        var options = JsonConvert.DeserializeObject<ConfigBody>(text);
+
+        MainVolume.Value = options.MainVolume;
+        MusicVolume.Value = options.MusicVolume;
+        UIVolume.Value = options.UIVolume;
+        SoundEffectVolume.Value = options.SoundEffectVolume;
+        NameInput.Text = options.Name;
+    }
+
+    public void _on_SaveButton_pressed()
+    {
 
         JObject volume = new JObject(
             new JProperty("MainVolume", (int)MainVolume.Value),

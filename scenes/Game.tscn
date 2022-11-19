@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Images/city.png" type="Texture" id=3]
+[ext_resource path="res://scripts/Bus.cs" type="Script" id=4]
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,12 +14,14 @@ z_index = -1
 texture = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 132, 112 )
+position = Vector2( 178, 183 )
+rotating = true
 current = true
 zoom = Vector2( 0.2, 0.2 )
+script = ExtResource( 4 )
 
 [node name="Bus" parent="Camera2D" instance=ExtResource( 2 )]
-position = Vector2( 0, 16 )
+rotation = -1.5708
 scale = Vector2( 0.5, 0.5 )
 z_index = 40
 
