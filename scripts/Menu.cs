@@ -14,11 +14,6 @@ public class Menu : Node2D
         string text = file.GetAsText();
         ConfigBody jsonfile = JsonConvert.DeserializeObject<ConfigBody>(text);
         file.Close();
-        GD.Print(jsonfile.MainVolume);
-        GD.Print(jsonfile.MusicVolume);
-        GD.Print(jsonfile.UIVolume);
-        GD.Print(jsonfile.SoundEffectVolume);
-        GD.Print(jsonfile.Name);
 
         MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
         MainMusic.VolumeDb = jsonfile.MainVolume;

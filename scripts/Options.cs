@@ -13,8 +13,10 @@ public class Options : Node2D
     public HSlider UIVolume;
     public HSlider SoundEffectVolume;
     public TextEdit NameInput;
-    public OptionButton FPSOptions;
-    public int fps = 60;
+    public Label Fps;
+    public int money;
+    public bool fps_is_on;
+    public CheckButton fps_is_onbutton;
     public override void _Ready()
     {
         MainVolume = GetNode("MainVolume") as HSlider;
@@ -22,7 +24,8 @@ public class Options : Node2D
         UIVolume = GetNode("UIVolume") as HSlider;
         SoundEffectVolume = GetNode("SoundEffectVolume") as HSlider;
         NameInput = GetNode("NameInput") as TextEdit;
-        FPSOptions = GetNode("FPSOptions") as OptionButton;
+        Fps = GetNode("Fps") as Label;
+        fps_is_onbutton = GetNode("fps_is_on") as CheckButton;
 
 
         string text = File.ReadAllText(@"save/options.json");
@@ -33,46 +36,11 @@ public class Options : Node2D
         UIVolume.Value = options.UIVolume;
         SoundEffectVolume.Value = options.SoundEffectVolume;
         NameInput.Text = options.Name;
+        money = options.Money;
+        fps_is_onbutton.Pressed = options.fps_is_on;
 
-        FPSOptions.AddItem("60 FPS");
-        FPSOptions.AddItem("120 FPS");
-        FPSOptions.AddItem("240 FPS");
-        FPSOptions.AddItem("360 FPS");
-        FPSOptions.AddItem("Unlimited");
+        GD.Print(options.Money);
     }
-
-    public void _on_FPSOptions_item_selected(int index)
-    {
-        var selected = index;
-
-        switch (selected)
-        {
-            case 0:
-                GD.Print("60");
-                fps = 60;
-                break;
-
-            case 1:
-                GD.Print("120");
-                fps = 120;
-                break;
-
-            case 2:
-                GD.Print("240");
-                fps = 240;
-                break;
-
-            case 3:
-                GD.Print("360");
-                fps = 360;
-                break;
-            case 4:
-                GD.Print("Unlimided");
-                fps = 100000;
-                break;
-        }
-    }
-
     public void _on_SaveButton_pressed()
     {
 
@@ -81,8 +49,9 @@ public class Options : Node2D
             new JProperty("MusicVolume", (int)MusicVolume.Value),
             new JProperty("UIVolume", (int)UIVolume.Value),
             new JProperty("SoundEffectVolume", (int)SoundEffectVolume.Value),
+            new JProperty("Money", (int)money),
+            new JProperty("Fps_is_on", (bool)fps_is_onbutton.Pressed),
             new JProperty("Name", (string)NameInput.Text));
-            new JProperty("Fps", (int)fps);
 
         File.WriteAllText(@"save/options.json", options.ToString());
 
@@ -91,7 +60,6 @@ public class Options : Node2D
         {
             options.WriteTo(writer);
         }
-        GetTree().ChangeScene("res://scenes/Menu.tscn");
     }
 
     public override void _Input(InputEvent esemeny)
@@ -106,9 +74,7 @@ public class Options : Node2D
         GetTree().ChangeScene("res://scenes/Menu.tscn");
     }
 
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
+    public override void _Process(float delta)
+    {
+    }
 }

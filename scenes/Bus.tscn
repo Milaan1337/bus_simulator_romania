@@ -33,6 +33,7 @@ extents = Vector2( 28, 9.5 )
 [node name="Bus" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+z_index = 11
 script = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
@@ -47,4 +48,4 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 rotation = 1.5708
 current = true
-zoom = Vector2( 0.2, 0.2 )
+zoom = Vector2( 0.4, 0.4 )

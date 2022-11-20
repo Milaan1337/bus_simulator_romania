@@ -5,7 +5,7 @@ public class Bus : KinematicBody2D
 {
     [Export]private float _steeringAngle = 90.0f;
     [Export] private float _enginePoser = 300.0f;
-    [Export] private float _maxSpeedReverse = 50.0f;
+    [Export] private float _maxSpeedReverse = 60.0f;
 
     private float _wheelBase = 70.0f;
 
@@ -16,7 +16,7 @@ public class Bus : KinematicBody2D
     private float _drag = -0.0015f;
     private float _breaking = -450.0f;
 
-    private float _slipSpeed = 400;
+    private float _slipSpeed = 10;
     private float _tractionFast = 0.1f;
     private float _tractionSlow = 0.7f;
 
@@ -74,8 +74,8 @@ public class Bus : KinematicBody2D
 
     private void CalculateSteering(float delta)
     {
-        Vector2 rearWheel = Position - Transform.x * _wheelBase / 2.0f;
-        Vector2 frontWheel = Position + Transform.x * _wheelBase / 2.0f;
+        Vector2 rearWheel = Position - Transform.x * _wheelBase / 4.0f;
+        Vector2 frontWheel = Position + Transform.x * _wheelBase / 4.0f;
         rearWheel += _velocity * delta;
         frontWheel += _velocity.Rotated(_steerAngle) * delta;
         Vector2 newHeading = (frontWheel - rearWheel).Normalized();
