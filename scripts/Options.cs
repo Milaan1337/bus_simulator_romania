@@ -13,6 +13,8 @@ public class Options : Node2D
     public HSlider UIVolume;
     public HSlider SoundEffectVolume;
     public TextEdit NameInput;
+    public OptionButton FPSOptions;
+    public int fps = 60;
     public override void _Ready()
     {
         MainVolume = GetNode("MainVolume") as HSlider;
@@ -20,6 +22,8 @@ public class Options : Node2D
         UIVolume = GetNode("UIVolume") as HSlider;
         SoundEffectVolume = GetNode("SoundEffectVolume") as HSlider;
         NameInput = GetNode("NameInput") as TextEdit;
+        FPSOptions = GetNode("FPSOptions") as OptionButton;
+
 
         string text = File.ReadAllText(@"save/options.json");
         var options = JsonConvert.DeserializeObject<ConfigBody>(text);
@@ -29,24 +33,63 @@ public class Options : Node2D
         UIVolume.Value = options.UIVolume;
         SoundEffectVolume.Value = options.SoundEffectVolume;
         NameInput.Text = options.Name;
+
+        FPSOptions.AddItem("60 FPS");
+        FPSOptions.AddItem("120 FPS");
+        FPSOptions.AddItem("240 FPS");
+        FPSOptions.AddItem("360 FPS");
+        FPSOptions.AddItem("Unlimited");
+    }
+
+    public void _on_FPSOptions_item_selected(int index)
+    {
+        var selected = index;
+
+        switch (selected)
+        {
+            case 0:
+                GD.Print("60");
+                fps = 60;
+                break;
+
+            case 1:
+                GD.Print("120");
+                fps = 120;
+                break;
+
+            case 2:
+                GD.Print("240");
+                fps = 240;
+                break;
+
+            case 3:
+                GD.Print("360");
+                fps = 360;
+                break;
+            case 4:
+                GD.Print("Unlimided");
+                fps = 100000;
+                break;
+        }
     }
 
     public void _on_SaveButton_pressed()
     {
 
-        JObject volume = new JObject(
+        JObject options = new JObject(
             new JProperty("MainVolume", (int)MainVolume.Value),
             new JProperty("MusicVolume", (int)MusicVolume.Value),
             new JProperty("UIVolume", (int)UIVolume.Value),
             new JProperty("SoundEffectVolume", (int)SoundEffectVolume.Value),
             new JProperty("Name", (string)NameInput.Text));
+            new JProperty("Fps", (int)fps);
 
-        File.WriteAllText(@"save/options.json", volume.ToString());
+        File.WriteAllText(@"save/options.json", options.ToString());
 
         using (StreamWriter file = File.CreateText(@"save/options.json"))
         using (JsonTextWriter writer = new JsonTextWriter(file))
         {
-            volume.WriteTo(writer);
+            options.WriteTo(writer);
         }
         GetTree().ChangeScene("res://scenes/Menu.tscn");
     }

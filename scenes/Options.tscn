@@ -109,5 +109,29 @@ scale = Vector2( 1.28, 1.2766 )
 z_index = -33
 texture = ExtResource( 5 )
 
+[node name="CheckButton" type="CheckButton" parent="."]
+margin_left = 221.0
+margin_top = 253.0
+margin_right = 297.0
+margin_bottom = 293.0
+
+[node name="FPS" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 184.0
+margin_top = 266.0
+margin_right = 224.0
+margin_bottom = 297.0
+text = "FPS: 
+"
+
+[node name="FPSOptions" type="OptionButton" parent="."]
+margin_left = 232.0
+margin_top = 304.0
+margin_right = 316.0
+margin_bottom = 324.0
+text = "60 fps"
+clip_text = true
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="item_selected" from="FPSOptions" to="." method="_on_FPSOptions_item_selected"]

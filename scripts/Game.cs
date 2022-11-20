@@ -6,9 +6,10 @@ public class Game : Node2D
     [Export] public int speed = 5;
 
     [Export] public int rotationspeed = 1;
+    Camera2D camera;
     public override void _Ready()
     {
-        
+        camera = GetNode("Camera2D") as Camera2D;
     }
     public override void _Input(InputEvent esemeny)
     {
@@ -16,15 +17,5 @@ public class Game : Node2D
         {
             GetTree().ChangeScene("res://scenes/Menu.tscn");
         }
-        if (Input.IsActionPressed("left"))
-        {
-
-        }
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }

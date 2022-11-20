@@ -4,6 +4,10 @@
     <RootNamespace>Bussimulator</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.31" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scenes\" />
   </ItemGroup>
 </Project>
