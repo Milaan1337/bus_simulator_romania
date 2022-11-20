@@ -33,8 +33,8 @@ public class Game : Node2D
             fps_is_on = false;
         }
         music.VolumeDb = options.MusicVolume;
-        engine.VolumeDb = options.UIVolume;
-        opendoor.VolumeDb = options.UIVolume;
+        engine.VolumeDb = options.SoundEffectVolume;
+        opendoor.VolumeDb = options.SoundEffectVolume;
     }
 
     public void _on_Area2D_body_entered(RigidBody2D body)

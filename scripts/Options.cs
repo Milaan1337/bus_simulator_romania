@@ -17,6 +17,7 @@ public class Options : Node2D
     public int money;
     public bool fps_is_on;
     public CheckButton fps_is_onbutton;
+    public AudioStreamPlayer2D click;
     public override void _Ready()
     {
         MainVolume = GetNode("MainVolume") as HSlider;
@@ -26,6 +27,7 @@ public class Options : Node2D
         NameInput = GetNode("NameInput") as TextEdit;
         Fps = GetNode("Fps") as Label;
         fps_is_onbutton = GetNode("fps_is_on") as CheckButton;
+        click = GetNode("Click") as AudioStreamPlayer2D;
 
 
         string text = File.ReadAllText(@"save/options.json");
@@ -43,7 +45,7 @@ public class Options : Node2D
     }
     public void _on_SaveButton_pressed()
     {
-
+        click.Play();
         JObject options = new JObject(
             new JProperty("MainVolume", (int)MainVolume.Value),
             new JProperty("MusicVolume", (int)MusicVolume.Value),
@@ -71,6 +73,7 @@ public class Options : Node2D
     }
     public void _on_TextureButton_pressed()
     {
+        click.Play();
         GetTree().ChangeScene("res://scenes/Menu.tscn");
     }
 
