@@ -15,15 +15,23 @@ public class Game : Node2D
 	public AudioStreamPlayer2D opendoor;
 	public AudioStreamPlayer2D engine;
 	public AudioStreamPlayer2D music;
+	public Sprite arrow;
+	public Area2D busstop;
+	public Node2D bus;
 
 	public override void _Ready()
 	{
 		string text = File.ReadAllText(@"save/options.json");
 		var options = JsonConvert.DeserializeObject<ConfigBody>(text);
-		opendoor= GetNode("Bus/OpenDoor") as AudioStreamPlayer2D;
+
+        bus = GetNode("Bus") as Node2D;
+
+        opendoor = GetNode("Bus/OpenDoor") as AudioStreamPlayer2D;
 		engine= GetNode("Bus/Engine") as AudioStreamPlayer2D;
 		music= GetNode("Bus/Music") as AudioStreamPlayer2D;
-		if (options.fps_is_on)
+		arrow = GetNode("Arrow") as Sprite;
+		busstop = GetNode("/root/Game/Bus_stop/Area2D") as Area2D;
+        if (options.fps_is_on)
 		{
 			fps_is_on = true;
 			Fps = GetNode("Fps") as Label;
@@ -35,11 +43,6 @@ public class Game : Node2D
 		music.VolumeDb = options.MusicVolume;
 		engine.VolumeDb = options.SoundEffectVolume;
 		opendoor.VolumeDb = options.SoundEffectVolume;
-	}
-
-	public void _on_Area2D_body_entered(RigidBody2D body)
-	{
-		GD.Print("Itt a penz nesze");
 	}
 	public override void _Input(InputEvent esemeny)
 	{
@@ -59,5 +62,6 @@ public class Game : Node2D
 		{
 			Fps.Text = $"{1 / delta} FPS";
 		}
-	}
+        arrow.LookAt(busstop.Position);
+    }
 }

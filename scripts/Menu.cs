@@ -20,7 +20,7 @@ public class Menu : Node2D
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
 		name = GetNode("Name") as Label;
 		MainMusic.VolumeDb = options.MusicVolume;
-		name.Text = $"Welcome {options.Name}";
+		name.Text = $"Welcome  {options.Name}";
 		//click.VolumeDb = jsonfile.UIVolume;
 	}
 
