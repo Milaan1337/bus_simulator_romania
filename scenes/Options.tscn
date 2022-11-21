@@ -17,32 +17,32 @@ margin_right = 354.0
 margin_bottom = 137.0
 mouse_default_cursor_shape = 7
 custom_icons/tick = ExtResource( 1 )
-min_value = -50.0
-max_value = 50.0
-value = 50.0
+min_value = -100.0
+max_value = 0.0
 
 [node name="MusicVolume" type="HSlider" parent="."]
 margin_left = 230.0
 margin_top = 153.0
 margin_right = 354.0
 margin_bottom = 169.0
-value = 100.0
+min_value = -100.0
+max_value = 0.0
 
 [node name="UIVolume" type="HSlider" parent="."]
 margin_left = 230.0
 margin_top = 220.0
 margin_right = 354.0
 margin_bottom = 236.0
-min_value = -70.0
-max_value = 30.0
-value = 30.0
+min_value = -100.0
+max_value = 0.0
 
 [node name="SoundEffectVolume" type="HSlider" parent="."]
 margin_left = 230.0
 margin_top = 187.0
 margin_right = 354.0
 margin_bottom = 203.0
-value = 100.0
+min_value = -100.0
+max_value = 0.0
 
 [node name="MainVolumeText" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )

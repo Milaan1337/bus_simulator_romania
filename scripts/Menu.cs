@@ -3,22 +3,24 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
-
+using System.IO;
+using File = System.IO.File;
 public class Menu : Node2D
 {
 	public AudioStreamPlayer2D MainMusic;
 	public AudioStreamPlayer2D click;
+	public Label name;
 	public override void _Ready()
 	{
-		File file = new File();
-		file.Open("res://save/options.json", File.ModeFlags.Read);
-		string text = file.GetAsText();
-		ConfigBody jsonfile = JsonConvert.DeserializeObject<ConfigBody>(text);
-		file.Close();
+        string text = File.ReadAllText(@"save/options.json");
+        var options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
-		click = GetNode("Click") as AudioStreamPlayer2D;
+
+        click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
-		MainMusic.VolumeDb = jsonfile.MainVolume;
+		name = GetNode("Name") as Label;
+		MainMusic.VolumeDb = options.MusicVolume;
+		name.Text = $"Welcome {options.Name}";
 		//click.VolumeDb = jsonfile.UIVolume;
 	}
 

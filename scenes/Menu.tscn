@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://assets/Images/OptionsButton.png" type="Texture" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/Images/OptionsBackground.png" type="Texture" id=6]
 [ext_resource path="res://assets/Sound/click.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 8 )
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 1 )
@@ -46,6 +53,14 @@ texture = ExtResource( 6 )
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
+
+[node name="Name" type="Label" parent="."]
+margin_left = 361.0
+margin_top = 33.0
+margin_right = 672.0
+margin_bottom = 88.0
+custom_fonts/font = SubResource( 1 )
+align = 1
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
