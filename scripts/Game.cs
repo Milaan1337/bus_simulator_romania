@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using File = System.IO.File;
@@ -18,20 +19,21 @@ public class Game : Node2D
 	public Sprite arrow;
 	public Area2D busstop;
 	public Node2D bus;
+	public int money;
 
 	public override void _Ready()
 	{
 		string text = File.ReadAllText(@"save/options.json");
 		var options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
-        bus = GetNode("Bus") as Node2D;
+		bus = GetNode("Bus") as Node2D;
 
-        opendoor = GetNode("Bus/OpenDoor") as AudioStreamPlayer2D;
-		engine= GetNode("Bus/Engine") as AudioStreamPlayer2D;
-		music= GetNode("Bus/Music") as AudioStreamPlayer2D;
+		opendoor = GetNode("Bus/OpenDoor") as AudioStreamPlayer2D;
+		engine = GetNode("Bus/Engine") as AudioStreamPlayer2D;
+		music = GetNode("Bus/Music") as AudioStreamPlayer2D;
 		arrow = GetNode("Arrow") as Sprite;
 		busstop = GetNode("/root/Game/Bus_stop/Area2D") as Area2D;
-        if (options.fps_is_on)
+		if (options.fps_is_on)
 		{
 			fps_is_on = true;
 			Fps = GetNode("Fps") as Label;
