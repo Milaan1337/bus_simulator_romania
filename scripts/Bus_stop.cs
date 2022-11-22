@@ -7,9 +7,6 @@ using File = System.IO.File;
 
 public class Bus_stop : Node2D
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
 	public float x;
 	public float y;
 	public Vector2 position;
@@ -19,11 +16,12 @@ public class Bus_stop : Node2D
 	public Sprite circle;
 	public Random rng;
 	public int money;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    public Label moneylabel;
+    public override void _Ready()
 	{
 		setPos();
-	}
+        moneylabel = GetNode("../Money") as Label;
+    }
 	public void _on_Timer_timeout()
     {
 		game_end();
@@ -64,7 +62,8 @@ public class Bus_stop : Node2D
 			new JProperty("SoundEffectVolume", (int)get_options.SoundEffectVolume),
 			new JProperty("Money", (int)get_options.Money + money),
 			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
-			new JProperty("Name", (string)get_options.Name));
+			new JProperty("Money_in_game", (int)money),
+            new JProperty("Name", (string)get_options.Name));
 
 		File.WriteAllText(@"save/options.json", options.ToString());
 
@@ -74,13 +73,15 @@ public class Bus_stop : Node2D
 			options.WriteTo(writer);
 		}
 		money = 0;
+		GetTree().ChangeScene("res://scenes/Timeout.tscn");
 	}
 
-	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	//  public override void _Process(float delta)
-	//  {
-	//      
-	//  }
+	public override void _Process(float delta)
+	{
+        string textinsec = File.ReadAllText(@"save/options.json");
+        var options = JsonConvert.DeserializeObject<ConfigBody>(textinsec);
+        moneylabel.Text = Convert.ToString(money);
+    }
 }
 
 

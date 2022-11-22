@@ -45,6 +45,8 @@ public class Options : Node2D
     }
     public void _on_SaveButton_pressed()
     {
+        string text = File.ReadAllText(@"save/options.json");
+        var optionsget = JsonConvert.DeserializeObject<ConfigBody>(text);
         click.Play();
         JObject options = new JObject(
             new JProperty("MainVolume", (int)MainVolume.Value),
@@ -53,6 +55,7 @@ public class Options : Node2D
             new JProperty("SoundEffectVolume", (int)SoundEffectVolume.Value),
             new JProperty("Money", (int)money),
             new JProperty("Fps_is_on", (bool)fps_is_onbutton.Pressed),
+            new JProperty("Money_in_game", (int)optionsget.Money_in_game),
             new JProperty("Name", (string)NameInput.Text));
 
         File.WriteAllText(@"save/options.json", options.ToString());

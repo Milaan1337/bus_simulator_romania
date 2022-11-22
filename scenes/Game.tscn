@@ -58,6 +58,13 @@ z_index = 65
 texture = ExtResource( 4 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
 autostart = true
+
+[node name="Money" type="Label" parent="."]
+margin_left = 49.0
+margin_top = 134.0
+margin_right = 89.0
+margin_bottom = 148.0
 
 [connection signal="timeout" from="Timer" to="Bus_stop" method="_on_Timer_timeout"]
