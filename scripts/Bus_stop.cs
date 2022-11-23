@@ -20,7 +20,7 @@ public class Bus_stop : Node2D
     public override void _Ready()
 	{
 		setPos();
-        moneylabel = GetNode("../Money") as Label;
+        moneylabel = GetNode("../Bus/HUD/Money") as Label;
     }
 	public void _on_Timer_timeout()
     {

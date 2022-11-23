@@ -54,7 +54,7 @@ public class Game : Node2D
 		if (get_options.fps_is_on)
 		{
 			fps_is_on = true;
-			Fps = GetNode("Fps") as Label;
+			Fps = GetNode("Bus/HUD/Fps") as Label;
 		}
 		else
 		{

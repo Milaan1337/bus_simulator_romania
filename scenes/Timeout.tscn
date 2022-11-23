@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Images/ExitButton.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Timeout.cs" type="Script" id=3]
+[ext_resource path="res://scripts/Timeout.cs" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56

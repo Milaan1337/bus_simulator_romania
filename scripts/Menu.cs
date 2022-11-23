@@ -10,16 +10,19 @@ public class Menu : Node2D
 	public AudioStreamPlayer2D MainMusic;
 	public AudioStreamPlayer2D click;
 	public Label name;
+	public Label money;
 	public override void _Ready()
 	{
         string text = File.ReadAllText(@"save/options.json");
         var options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
-
+        OS.WindowMaximized = true;
         click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
 		name = GetNode("Name") as Label;
+		money = GetNode("Money") as Label;
 		MainMusic.VolumeDb = options.MusicVolume;
+		money.Text = $"Your all money:  ${options.Money}";
 		name.Text = $"Welcome  {options.Name}";
 		//click.VolumeDb = jsonfile.UIVolume;
 	}
@@ -36,10 +39,7 @@ public class Menu : Node2D
 		GetTree().Quit();
 	}
 
-
-	/*
-		public override void _Process(float delta)
-		{
-			MainMusic.VolumeDb -= 0.1f;
-		}*/
+	public override void _Process(float delta)
+	{
+	}
 }

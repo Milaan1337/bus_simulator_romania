@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=2]
@@ -8,6 +8,17 @@
 [ext_resource path="res://assets/Sound/OpenDoor.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -41,9 +52,31 @@ stream = ExtResource( 7 )
 stream = ExtResource( 6 )
 volume_db = -13.109
 
-[node name="Fps" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
+[node name="HUD" type="CanvasLayer" parent="Bus"]
+
+[node name="Fps" type="Label" parent="Bus/HUD"]
+margin_left = 13.0
+margin_top = 7.0
+margin_right = 53.0
+margin_bottom = 21.0
+
+[node name="Money" type="Label" parent="Bus/HUD"]
+margin_left = 950.0
+margin_top = 6.0
+margin_right = 1020.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0.945098, 1, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+
+[node name="Label" type="Label" parent="Bus/HUD"]
+margin_left = 860.0
+margin_top = 6.0
+margin_right = 940.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Your money:"
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
 position = Vector2( 69, 178 )
@@ -60,11 +93,5 @@ texture = ExtResource( 4 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
-
-[node name="Money" type="Label" parent="."]
-margin_left = 49.0
-margin_top = 134.0
-margin_right = 89.0
-margin_bottom = 148.0
 
 [connection signal="timeout" from="Timer" to="Bus_stop" method="_on_Timer_timeout"]
