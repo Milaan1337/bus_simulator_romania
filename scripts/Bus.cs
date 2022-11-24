@@ -3,9 +3,9 @@ using System;
 
 public class Bus : KinematicBody2D
 {
-    [Export]private float _steeringAngle = 90.0f;
-    [Export] private float _enginePoser = 300.0f;
-    [Export] private float _maxSpeedReverse = 60.0f;
+    [Export] private float _steeringAngle = 15.0f;
+    [Export] private float _enginePoser = 400.0f;
+    [Export] private float _maxSpeedReverse = 250.0f;
 
     private float _wheelBase = 70.0f;
 
@@ -58,14 +58,14 @@ public class Bus : KinematicBody2D
             return;
         }
 
-        float turn = Input.GetActionStrength("left") - Input.GetActionStrength("right");
+        float turn = Input.GetActionStrength("right") - Input.GetActionStrength("left");
         _steerAngle = turn * Mathf.Deg2Rad(_steeringAngle);
 
-        if (Input.IsActionPressed("backward"))
+        if (Input.IsActionPressed("forward"))
         {
             _acceleration = Transform.x * _enginePoser;
         }
-        if (Input.IsActionPressed("forward"))
+        if (Input.IsActionPressed("backward"))
         {
             _acceleration = Transform.x * _breaking;
         }

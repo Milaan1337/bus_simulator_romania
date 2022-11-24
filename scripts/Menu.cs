@@ -16,7 +16,6 @@ public class Menu : Node2D
         string text = File.ReadAllText(@"save/options.json");
         var options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
-        OS.WindowMaximized = true;
         click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
 		name = GetNode("Name") as Label;

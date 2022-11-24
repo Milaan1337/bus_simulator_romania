@@ -99,16 +99,16 @@ margin_bottom = 101.0
 text = "Username: "
 
 [node name="SaveButton" type="TextureButton" parent="."]
-margin_left = 1805.0
-margin_top = 1025.0
-margin_right = 1911.0
-margin_bottom = 1074.0
+margin_left = 895.0
+margin_top = 531.0
+margin_right = 1001.0
+margin_bottom = 580.0
 texture_normal = ExtResource( 4 )
 expand = true
 
 [node name="OptionsBackground" type="Sprite" parent="."]
-position = Vector2( 961, 553 )
-scale = Vector2( 2.402, 2.356 )
+position = Vector2( 512.2, 299.915 )
+scale = Vector2( 1.2805, 1.27623 )
 z_index = -33
 texture = ExtResource( 5 )
 

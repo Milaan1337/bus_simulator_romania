@@ -17,14 +17,11 @@ public class Bus_stop : Node2D
 	public Random rng;
 	public int money;
     public Label moneylabel;
+	public Timer timer;
     public override void _Ready()
 	{
 		setPos();
         moneylabel = GetNode("../Bus/HUD/Money") as Label;
-    }
-	public void _on_Timer_timeout()
-    {
-		game_end();
     }
 
 	public void setPos(){
@@ -35,6 +32,7 @@ public class Bus_stop : Node2D
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
 		bus = GetNode("/root/Game/Bus") as Node2D;
+		timer = GetNode("/root/Game/Timer") as Timer;
 		bus_body = bus.GetNode("KinematicBody2D") as KinematicBody2D;
 		bus_stop.Position = position;
 		circle.Position = position;
@@ -44,9 +42,12 @@ public class Bus_stop : Node2D
 	{
 		if (body == bus_body){
 			setPos();
-			GD.Print("cigo");
-			money += 325;
-		}else{
+			//GD.Print(timer.WaitTime - timer.TimeLeft);
+            TimeSpan t = TimeSpan.FromSeconds((int)timer.WaitTime - (int)timer.TimeLeft);
+			GD.Print(t);
+            money += 325;
+        }
+        else{
 			GD.Print("nem cigo");
 		}
 	}
