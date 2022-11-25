@@ -13,7 +13,6 @@ public class Options : Node2D
     public HSlider UIVolume;
     public HSlider SoundEffectVolume;
     public TextEdit NameInput;
-    public Label Fps;
     public int money;
     public bool fps_is_on;
     public CheckButton fps_is_onbutton;
@@ -25,7 +24,6 @@ public class Options : Node2D
         UIVolume = GetNode("UIVolume") as HSlider;
         SoundEffectVolume = GetNode("SoundEffectVolume") as HSlider;
         NameInput = GetNode("NameInput") as TextEdit;
-        Fps = GetNode("Fps") as Label;
         fps_is_onbutton = GetNode("fps_is_on") as CheckButton;
         click = GetNode("Click") as AudioStreamPlayer2D;
 
@@ -41,7 +39,6 @@ public class Options : Node2D
         money = options.Money;
         fps_is_onbutton.Pressed = options.fps_is_on;
 
-        GD.Print(options.Money);
     }
     public void _on_SaveButton_pressed()
     {
