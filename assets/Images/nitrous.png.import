@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nitrous.jpg-7c5888d2d72d5655c2d862735434a7d5.stex"
+path="res://.import/nitrous.png-4462f9da25f29da51c8c48213a872438.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Images/nitrous.jpg"
-dest_files=[ "res://.import/nitrous.jpg-7c5888d2d72d5655c2d862735434a7d5.stex" ]
+source_file="res://assets/Images/nitrous.png"
+dest_files=[ "res://.import/nitrous.png-4462f9da25f29da51c8c48213a872438.stex" ]
 
 [params]
 

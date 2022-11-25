@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/Images/city.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Sound/EngineSound.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scenes/Nitrous.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
@@ -98,3 +99,7 @@ autostart = true
 [node name="Map" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2.99976, 13 )
 scale = Vector2( 4.1497, 4.88095 )
+
+[node name="Nitrous" parent="." instance=ExtResource( 6 )]
+position = Vector2( 647, 237 )
+script = null

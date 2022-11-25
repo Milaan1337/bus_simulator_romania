@@ -65,6 +65,10 @@ public class Game : Node2D
 		music.VolumeDb = get_options.MusicVolume;
 		engine.VolumeDb = get_options.SoundEffectVolume;
 	}
+	public void _on_Nitrous_child_entered_tree()
+	{
+		GD.Print("asd");
+	} 
 	public override void _Input(InputEvent esemeny)
 	{
 		if (Input.IsActionJustPressed("back"))
