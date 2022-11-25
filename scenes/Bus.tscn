@@ -34,6 +34,7 @@ height = 42.0
 [node name="Bus" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+scale = Vector2( 2, 2 )
 z_index = 11
 script = SubResource( 2 )
 
