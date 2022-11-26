@@ -1,14 +1,21 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
-[ext_resource path="res://scenes/Bus.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Images/city.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/SpikeStrip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Sound/EngineSound.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Nitrous.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/Images/BarUpper.png" type="Texture" id=10]
+[ext_resource path="res://assets/Images/BarUnder.png" type="Texture" id=11]
+[ext_resource path="res://scripts/spikestrip.cs" type="Script" id=12]
+[ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=13]
+
+[sub_resource type="StreamTexture" id=4]
+flags = 4
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -24,6 +31,14 @@ font_data = ExtResource( 9 )
 size = 35
 font_data = ExtResource( 9 )
 
+[sub_resource type="DynamicFont" id=5]
+size = 54
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 70
+font_data = ExtResource( 9 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -32,15 +47,16 @@ visible = false
 position = Vector2( 2485.5, 1807 )
 scale = Vector2( 4.1497, 4.88095 )
 z_index = -265
-texture = ExtResource( 3 )
+texture = SubResource( 4 )
 
-[node name="Bus" parent="." instance=ExtResource( 2 )]
+[node name="Car" parent="." instance=ExtResource( 2 )]
 position = Vector2( 69, 178 )
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 z_index = 40
+script = ExtResource( 12 )
 
-[node name="Engine" type="AudioStreamPlayer2D" parent="Bus"]
+[node name="Engine" type="AudioStreamPlayer2D" parent="Car"]
 position = Vector2( 2, -3.05176e-05 )
 rotation = -3.14159
 scale = Vector2( 2, 2 )
@@ -48,21 +64,21 @@ stream = ExtResource( 5 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Music" type="AudioStreamPlayer2D" parent="Bus"]
+[node name="Music" type="AudioStreamPlayer2D" parent="Car"]
 position = Vector2( 0, 1.99997 )
 rotation = -3.14159
 scale = Vector2( 2, 2 )
 stream = ExtResource( 7 )
 
-[node name="HUD" type="CanvasLayer" parent="Bus"]
+[node name="HUD" type="CanvasLayer" parent="Car"]
 
-[node name="Fps" type="Label" parent="Bus/HUD"]
+[node name="Fps" type="Label" parent="Car/HUD"]
 margin_left = 13.0
 margin_top = 7.0
 margin_right = 53.0
 margin_bottom = 21.0
 
-[node name="Money" type="Label" parent="Bus/HUD"]
+[node name="Money" type="Label" parent="Car/HUD"]
 margin_left = 950.0
 margin_top = 6.0
 margin_right = 1020.0
@@ -70,7 +86,7 @@ margin_bottom = 26.0
 custom_colors/font_color = Color( 0.945098, 1, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 
-[node name="Yourmoney" type="Label" parent="Bus/HUD"]
+[node name="Yourmoney" type="Label" parent="Car/HUD"]
 margin_left = 860.0
 margin_top = 6.0
 margin_right = 940.0
@@ -80,12 +96,48 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Your money:"
 
-[node name="Time" type="Label" parent="Bus/HUD"]
+[node name="Time" type="Label" parent="Car/HUD"]
 margin_left = 433.0
 margin_top = 15.0
 margin_right = 536.0
 margin_bottom = 37.0
 custom_fonts/font = SubResource( 3 )
+
+[node name="NitrousBar" type="TextureProgress" parent="Car/HUD"]
+margin_left = 982.0
+margin_top = 591.0
+margin_right = 1478.0
+margin_bottom = 667.0
+rect_rotation = -90.0
+rect_scale = Vector2( 0.3, 0.4 )
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="Car/HUD/NitrousBar"]
+margin_left = 426.667
+margin_top = 67.5
+margin_right = 855.667
+margin_bottom = 132.5
+rect_rotation = 180.0
+custom_fonts/font = SubResource( 5 )
+text = "N      I      T      R      O"
+
+[node name="HpBar" type="TextureProgress" parent="Car/HUD"]
+margin_left = 345.0
+margin_top = 12.0
+margin_right = 841.0
+margin_bottom = 88.0
+rect_scale = Vector2( 0.6, 0.25 )
+value = 100.0
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="Car/HUD/HpBar"]
+margin_left = 218.333
+margin_right = 303.333
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 6 )
+text = "HP"
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
 position = Vector2( 69, 178 )
@@ -101,5 +153,9 @@ position = Vector2( 2.99976, 13 )
 scale = Vector2( 4.1497, 4.88095 )
 
 [node name="Nitrous" parent="." instance=ExtResource( 6 )]
-position = Vector2( 647, 237 )
-script = null
+position = Vector2( 537, 207 )
+
+[node name="SpikeStrip" parent="." instance=ExtResource( 3 )]
+position = Vector2( 967, 211 )
+rotation = 1.5708
+scale = Vector2( 0.4, 0.5 )

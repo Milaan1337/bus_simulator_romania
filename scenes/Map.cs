@@ -65,7 +65,7 @@ public class Map : Node2D
                     //return new Vector2(i,oszlop); // Valahogy elkell mentenünk melyik az a sor ahova nem random érték kerül, így a többit lehet majd randomizálni(#TODO)
                     res.x = oszlop;
                     res.y = i;
-                    GD.Print($"Az {oszlop-1} szamu oszlopban {grassCount} db szar volt.");
+                    //GD.Print($"Az {oszlop-1} szamu oszlopban {grassCount} db szar volt.");
                     if (grassCount <= 1){break;}
                     else{int randomNum = rndg.Next(0,2);if (randomNum == 0){break;}
                 }

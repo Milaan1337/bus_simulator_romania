@@ -11,7 +11,7 @@ public class Bus_stop : Node2D
 	public float y;
 	public Vector2 position;
 	public Area2D bus_stop;
-	public Node2D bus;
+	public Node2D car;
 	public KinematicBody2D bus_body;
 	public Sprite circle;
 	public Random rng;
@@ -21,7 +21,7 @@ public class Bus_stop : Node2D
     public override void _Ready()
 	{
 		setPos();
-        moneylabel = GetNode("../Bus/HUD/Money") as Label;
+        moneylabel = GetNode("../Car/HUD/Money") as Label;
     }
 
 	public void setPos(){
@@ -31,9 +31,9 @@ public class Bus_stop : Node2D
 		position = new Vector2(x,y);
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
-		bus = GetNode("/root/Game/Bus") as Node2D;
+		car = GetNode("/root/Game/Car") as Node2D;
 		timer = GetNode("/root/Game/Timer") as Timer;
-		bus_body = bus.GetNode("KinematicBody2D") as KinematicBody2D;
+		bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 		bus_stop.Position = position;
 		circle.Position = position;
 	}

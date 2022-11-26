@@ -1,10 +1,10 @@
 using Godot;
 using System;
 
-public class Bus : KinematicBody2D
+public class Cars : KinematicBody2D
 {
     [Export] private float _steeringAngle = 15.0f;
-    [Export] private float _enginePoser = 400.0f;
+    [Export] private int _enginePoser = 400;
     [Export] private float _maxSpeedReverse = 250.0f;
 
     private float _wheelBase = 70.0f;
@@ -19,8 +19,7 @@ public class Bus : KinematicBody2D
     private float _slipSpeed = 10;
     private float _tractionFast = 0.1f;
     private float _tractionSlow = 0.7f;
-
-
+    public AllVariable allVariable;
     private bool allowInput = true;
 
 
@@ -48,8 +47,6 @@ public class Bus : KinematicBody2D
         _velocity += _acceleration * delta;
         _velocity = MoveAndSlide(_velocity);
     }
-
-
 
     private void GetInput()
     {
@@ -108,5 +105,11 @@ public class Bus : KinematicBody2D
             frictionForce *= 3;
 
         _acceleration += dragForce + frictionForce;
+    }
+    
+    public override void _Process(float delta)
+	{
+        allVariable = new AllVariable();
+        _enginePoser = allVariable.speed;
     }
 }
