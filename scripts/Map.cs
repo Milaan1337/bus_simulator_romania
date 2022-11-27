@@ -6,6 +6,7 @@ public class Map : Node2D
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
+    [Export] private int mapLength;
     public TileMap tileMap;
     public TileSet tileSet;
     public Node2D bus_StopN;
@@ -33,7 +34,7 @@ public class Map : Node2D
         int grass = (int)tileSet.GetTilesIds()[1];
         int dirt = (int)tileSet.GetTilesIds()[0];
         Random rnd = new Random();
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < mapLength; i++)
         {
             if (i == 0){
                 for (int a = 0; a < 3; a++)
@@ -191,7 +192,7 @@ public class Map : Node2D
             if (positions[i].x != -1)
             {
                 tileMap.SetCell(oszlop,i,0);
-                if (oszlop == 9)
+                if (oszlop == mapLength-1)
                 {
                     GD.Print($"BUS_STOP2{bus_stop.Position.x}");
                     //bus_stop.Position = new Vector2(oszlop*64,i*64);
