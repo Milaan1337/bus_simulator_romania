@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/Images/OptionsButton.png" type="Texture" id=1]
 [ext_resource path="res://scripts/Options.cs" type="Script" id=2]
@@ -33,6 +33,14 @@ size = 20
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=10]
 size = 20
 font_data = ExtResource( 7 )
 
@@ -114,7 +122,7 @@ texture_normal = ExtResource( 4 )
 expand = true
 
 [node name="OptionsBackground" type="Sprite" parent="."]
-position = Vector2( 1431, 440 )
+position = Vector2( 1554, 472 )
 scale = Vector2( 1.281, 1.277 )
 z_index = -33
 texture = ExtResource( 5 )
@@ -177,6 +185,29 @@ margin_left = 459.0
 margin_top = 97.0
 margin_right = 633.0
 margin_bottom = 243.0
+
+[node name="VSyncButton" type="CheckButton" parent="."]
+margin_left = 168.0
+margin_top = 333.0
+margin_right = 312.0
+margin_bottom = 373.0
+custom_fonts/font = SubResource( 9 )
+text = "VSync:  "
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_left = 245.0
+margin_top = 377.0
+margin_right = 368.0
+margin_bottom = 403.0
+value = 70.0
+
+[node name="Label" type="Label" parent="HSlider"]
+margin_left = -102.0
+margin_top = -2.0
+margin_right = -13.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 10 )
+text = "Brightness:"
 
 [connection signal="pressed" from="SaveButton" to="." method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

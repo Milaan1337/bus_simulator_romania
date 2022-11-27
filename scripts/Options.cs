@@ -18,6 +18,7 @@ public class Options : Node2D
     public OptionButton display;
     public int money;
     public bool fps_is_on;
+    public CheckButton vsync_is_on;
     public int fpstar;
     public int displayindex;
     public override void _Ready()
@@ -30,6 +31,7 @@ public class Options : Node2D
         click = GetNode("Click") as AudioStreamPlayer2D;
         fpstarget = GetNode("FpsTarget") as OptionButton;
         display = GetNode("Display") as OptionButton;
+        vsync_is_on = GetNode("VSyncButton") as CheckButton;
 
 
         string text = File.ReadAllText(@"save/options.json");
@@ -41,6 +43,7 @@ public class Options : Node2D
         SoundEffectVolume.Value = options.SoundEffectVolume;
         money = options.Money;
         fps_is_onbutton.Pressed = options.fps_is_on;
+        vsync_is_on.Pressed = options.vsync_is_on;
         click.VolumeDb = options.UIVolume;
 
         /////////////////////////////////////////////////////////
@@ -124,6 +127,7 @@ public class Options : Node2D
             new JProperty("Money", (int)money),
             new JProperty("Fps_is_on", (bool)fps_is_onbutton.Pressed),
             new JProperty("Money_in_game", (int)optionsget.Money_in_game),
+            new JProperty("vsync_is_on", (bool)vsync_is_on.Pressed),
             new JProperty("fps_target", (int)fpstar),
             new JProperty("display_index", (int)displayindex));
 

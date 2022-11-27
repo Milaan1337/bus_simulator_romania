@@ -11,4 +11,5 @@ class ConfigBody
     public bool fps_is_on { get; set; }
     public int fps_target { get; set; }
     public int display_index { get; set; }
+    public bool vsync_is_on { get; set; }
 }

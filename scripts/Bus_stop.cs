@@ -66,6 +66,7 @@ public class Bus_stop : Node2D
 			new JProperty("SoundEffectVolume", (int)get_options.SoundEffectVolume),
 			new JProperty("Money", (int)get_options.Money + money),
 			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
+			new JProperty("vsync_is_on", (bool)get_options.vsync_is_on),
 			new JProperty("Money_in_game", (int)money),
 			new JProperty("fps_target", (int)get_options.fps_target),
 			new JProperty("display_index", (int)get_options.display_index));

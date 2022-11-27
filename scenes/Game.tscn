@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Sound/EngineSound.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Nitrous.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/Sound/MainMusic.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/Sound/IngameMusic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/Images/BarUpper.png" type="Texture" id=10]
@@ -38,7 +38,7 @@ font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=6]
 size = 60
-font_data = ExtResource( 14 )
+font_data = ExtResource( 9 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -56,20 +56,6 @@ rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 z_index = 40
 script = ExtResource( 12 )
-
-[node name="Engine" type="AudioStreamPlayer2D" parent="Car"]
-position = Vector2( 2, -3.05176e-05 )
-rotation = -3.14159
-scale = Vector2( 2, 2 )
-stream = ExtResource( 5 )
-volume_db = -80.0
-autoplay = true
-
-[node name="Music" type="AudioStreamPlayer2D" parent="Car"]
-position = Vector2( 0, 1.99997 )
-rotation = -3.14159
-scale = Vector2( 2, 2 )
-stream = ExtResource( 7 )
 
 [node name="HUD" type="CanvasLayer" parent="Car"]
 
@@ -134,12 +120,23 @@ texture_under = ExtResource( 11 )
 texture_progress = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="Car/HUD/HpBar"]
-margin_left = 190.0
-margin_top = 12.0
-margin_right = 342.0
-margin_bottom = 97.0
+margin_left = 211.667
+margin_top = 4.0
+margin_right = 363.667
+margin_bottom = 89.0
 custom_fonts/font = SubResource( 6 )
 text = "HP"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Car/HUD"]
+position = Vector2( 65, 177 )
+stream = ExtResource( 7 )
+autoplay = true
+
+[node name="Engine" type="AudioStreamPlayer2D" parent="Car/HUD"]
+position = Vector2( 68, 178 )
+stream = ExtResource( 5 )
+volume_db = -80.0
+autoplay = true
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
 position = Vector2( 69, 178 )

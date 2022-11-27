@@ -21,6 +21,7 @@ public class Game : Node2D
 	public Timer timer;
 	public Label time;
 	public TextureProgress nitrousbar;
+	public HSlider brightness;
 	public int money;
 	public TimeSpan t;
 	public AllVariable allVariable;
@@ -30,35 +31,20 @@ public class Game : Node2D
 
 	public override void _Ready()
 	{
+
 		allVariable = new AllVariable();
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
-		JObject options = new JObject(
-			new JProperty("MainVolume", (int)get_options.MainVolume),
-			new JProperty("MusicVolume", (int)get_options.MusicVolume),
-			new JProperty("UIVolume", (int)get_options.UIVolume),
-			new JProperty("SoundEffectVolume", (int)get_options.SoundEffectVolume),
-			new JProperty("Money", (int)get_options.Money + money),
-			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
-			new JProperty("Money_in_game", (int)money),
-			new JProperty("fps_target", (int)get_options.fps_target),
-			new JProperty("display_index", (int)get_options.display_index));
-
-		File.WriteAllText(@"save/options.json", options.ToString());
-
-		using (StreamWriter file = File.CreateText(@"save/options.json"))
-		using (JsonTextWriter writer = new JsonTextWriter(file))
-		{
-			options.WriteTo(writer);
-		}
 		allVariable.hp = 100;
 		car = GetNode("Car") as Node2D;
-		engine = GetNode("Car/Engine") as AudioStreamPlayer2D;
-		music = GetNode("Car/Music") as AudioStreamPlayer2D;
+		engine = GetNode("Car/HUD/Engine") as AudioStreamPlayer2D;
+		music = GetNode("Car/HUD/Music") as AudioStreamPlayer2D;
 		busstop = GetNode("/root/Game/Bus_stop/Area2D") as Area2D;
 		timer = GetNode("Timer") as Timer;
 		time = GetNode("Car/HUD/Time") as Label;
 		nitrousbar = GetNode("Car/HUD/NitrousBar") as TextureProgress;
+
+		if(get_options.vsync_is_on == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
 
 		if (get_options.fps_is_on)
 		{
