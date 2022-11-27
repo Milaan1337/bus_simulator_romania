@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/Menu.cs" type="Script" id=1]
 [ext_resource path="res://assets/Images/OptionsButton.png" type="Texture" id=2]
@@ -8,12 +8,6 @@
 [ext_resource path="res://assets/Images/Background.png" type="Texture" id=6]
 [ext_resource path="res://assets/Sound/click.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=8]
-
-[sub_resource type="DynamicFont" id=1]
-size = 45
-outline_size = 2
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 25
@@ -62,14 +56,6 @@ texture = ExtResource( 6 )
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 7 )
-
-[node name="Name" type="Label" parent="."]
-margin_left = 21.0
-margin_top = 64.0
-margin_right = 332.0
-margin_bottom = 119.0
-custom_fonts/font = SubResource( 1 )
-align = 1
 
 [node name="Money" type="Label" parent="."]
 margin_left = 6.0

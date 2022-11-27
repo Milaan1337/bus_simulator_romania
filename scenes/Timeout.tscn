@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/Fonts/Rally Blade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Images/ExitButton.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Timeout.cs" type="Script" id=3]
 
@@ -16,17 +16,17 @@ font_data = ExtResource( 1 )
 script = ExtResource( 3 )
 
 [node name="timeleft" type="Label" parent="."]
-margin_left = 351.0
+margin_left = 240.0
 margin_top = 95.0
-margin_right = 683.0
+margin_right = 805.0
 margin_bottom = 163.0
 custom_fonts/font = SubResource( 1 )
 text = "Your time is up"
 
 [node name="Earn" type="Label" parent="."]
-margin_left = 397.0
+margin_left = 308.0
 margin_top = 189.0
-margin_right = 595.0
+margin_right = 566.0
 margin_bottom = 234.0
 custom_fonts/font = SubResource( 2 )
 

@@ -12,13 +12,13 @@ public class spikestrip : Node2D
     }
     public void _on_Area2D_body_entered(object body)
     {
-        allVariable.hp -= 50;
+        allVariable.hp -= 34;
         hpbar.Value = allVariable.hp;
     }
 
     public override void _Process(float delta)
     {
-        if (allVariable.hp == 0)
+        if (allVariable.hp <= 0)
         {
             GetTree().ChangeScene("res://scenes/Timeout.tscn");
         }    

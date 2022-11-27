@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/Images/BarUnder.png" type="Texture" id=11]
 [ext_resource path="res://scripts/spikestrip.cs" type="Script" id=12]
 [ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=13]
+[ext_resource path="res://assets/Fonts/Rally Blade.otf" type="DynamicFontData" id=14]
 
 [sub_resource type="StreamTexture" id=4]
 flags = 4
@@ -25,7 +26,7 @@ font_data = ExtResource( 9 )
 [sub_resource type="DynamicFont" id=2]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
+font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 35
@@ -36,8 +37,8 @@ size = 54
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 70
-font_data = ExtResource( 9 )
+size = 60
+font_data = ExtResource( 14 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -87,9 +88,9 @@ custom_colors/font_color = Color( 0.945098, 1, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 
 [node name="Yourmoney" type="Label" parent="Car/HUD"]
-margin_left = 860.0
+margin_left = 801.0
 margin_top = 6.0
-margin_right = 940.0
+margin_right = 945.0
 margin_bottom = 26.0
 custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
@@ -97,10 +98,10 @@ custom_fonts/font = SubResource( 2 )
 text = "Your money:"
 
 [node name="Time" type="Label" parent="Car/HUD"]
-margin_left = 433.0
-margin_top = 15.0
-margin_right = 536.0
-margin_bottom = 37.0
+margin_left = 451.0
+margin_top = 5.0
+margin_right = 554.0
+margin_bottom = 48.0
 custom_fonts/font = SubResource( 3 )
 
 [node name="NitrousBar" type="TextureProgress" parent="Car/HUD"]
@@ -123,19 +124,20 @@ custom_fonts/font = SubResource( 5 )
 text = "N      I      T      R      O"
 
 [node name="HpBar" type="TextureProgress" parent="Car/HUD"]
-margin_left = 345.0
-margin_top = 12.0
-margin_right = 841.0
-margin_bottom = 88.0
+margin_left = 372.0
+margin_top = 570.0
+margin_right = 868.0
+margin_bottom = 646.0
 rect_scale = Vector2( 0.6, 0.25 )
 value = 100.0
 texture_under = ExtResource( 11 )
 texture_progress = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="Car/HUD/HpBar"]
-margin_left = 218.333
-margin_right = 303.333
-margin_bottom = 85.0
+margin_left = 190.0
+margin_top = 12.0
+margin_right = 342.0
+margin_bottom = 97.0
 custom_fonts/font = SubResource( 6 )
 text = "HP"
 

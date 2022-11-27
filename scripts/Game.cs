@@ -30,7 +30,7 @@ public class Game : Node2D
 
 	public override void _Ready()
 	{
-
+		allVariable = new AllVariable();
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 
 		JObject options = new JObject(
@@ -41,7 +41,8 @@ public class Game : Node2D
 			new JProperty("Money", (int)get_options.Money + money),
 			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
 			new JProperty("Money_in_game", (int)money),
-			new JProperty("Name", (string)get_options.Name));
+			new JProperty("fps_target", (int)get_options.fps_target),
+			new JProperty("display_index", (int)get_options.display_index));
 
 		File.WriteAllText(@"save/options.json", options.ToString());
 
@@ -50,7 +51,7 @@ public class Game : Node2D
 		{
 			options.WriteTo(writer);
 		}
-
+		allVariable.hp = 100;
 		car = GetNode("Car") as Node2D;
 		engine = GetNode("Car/Engine") as AudioStreamPlayer2D;
 		music = GetNode("Car/Music") as AudioStreamPlayer2D;
@@ -63,6 +64,34 @@ public class Game : Node2D
 		{
 			fps_is_on = true;
 			Fps = GetNode("Car/HUD/Fps") as Label;
+
+			switch (get_options.fps_target)
+			{
+				case 1:
+					Engine.TargetFps = 30;
+					break;
+					
+				case 2:
+					Engine.TargetFps = 60;
+					break;
+					
+				case 3:
+					Engine.TargetFps = 120;
+					break;
+					
+				case 4:
+					Engine.TargetFps = 240;
+					break;
+					
+				case 5:
+					Engine.TargetFps = 360;
+					break;
+				case 6:
+					Engine.TargetFps = 10000;
+					break;
+					
+			}
+
 		}
 		else
 		{
@@ -77,19 +106,14 @@ public class Game : Node2D
 		{
 			GetTree().ChangeScene("res://scenes/Menu.tscn");
 		}
-		allVariable = new AllVariable();
-		if (allVariable.nitrous >= 1)
+		if (allVariable.nitrous >= 1 && Input.IsActionPressed("nitrous"))
 		{
-			if (Input.IsActionPressed("nitrous"))
-			{
 				allVariable.nitrous--;
 				nitrousbar.Value = allVariable.nitrous;
-				allVariable.speed = 8000;
-			}
+				allVariable.speed = 1500;
 		}
 		else
 		{
-			allVariable = new AllVariable();
 			allVariable.speed = 400;
 		}
 		
