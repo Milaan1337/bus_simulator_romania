@@ -24,7 +24,8 @@ public class Bus_stop : Node2D
         moneylabel = GetNode("../Car/HUD/Money") as Label;
     }
 
-	public void setPos(){
+	public void setPos()
+	{
 		rng = new Random();
 		x = rng.Next(0,400);
 		y = rng.Next(-400,0);
@@ -40,14 +41,16 @@ public class Bus_stop : Node2D
 
 	public void _on_Area2D_body_entered(object body)
 	{
-		if (body == bus_body){
+		if (body == bus_body)
+		{
 			setPos();
 			//GD.Print(timer.WaitTime - timer.TimeLeft);
             TimeSpan t = TimeSpan.FromSeconds((int)timer.WaitTime - (int)timer.TimeLeft);
 			GD.Print(t);
             money += 325;
         }
-        else{
+        else
+		{
 			GD.Print("nem cigo");
 		}
 	}
@@ -64,7 +67,8 @@ public class Bus_stop : Node2D
 			new JProperty("Money", (int)get_options.Money + money),
 			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
 			new JProperty("Money_in_game", (int)money),
-            new JProperty("Name", (string)get_options.Name));
+			new JProperty("fps_target", (int)get_options.fps_target),
+			new JProperty("display_index", (int)get_options.display_index));
 
 		File.WriteAllText(@"save/options.json", options.ToString());
 
