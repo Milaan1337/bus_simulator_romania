@@ -8,6 +8,9 @@ public class Map : Node2D
     // private string b = "text";
     public TileMap tileMap;
     public TileSet tileSet;
+    public Node2D bus_StopN;
+    public Sprite red_circle;
+    public Area2D bus_stop;
     public enum dirtForm
     {
         oneBlock,
@@ -20,12 +23,17 @@ public class Map : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
+        bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
+        GD.Print($"BUS_STOP1{bus_stop.Position.x}");
+        //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
+        red_circle = bus_StopN.GetNode("Sprite") as Sprite;
         tileMap = GetNode("TileMap") as TileMap;
         tileSet = tileMap.TileSet;
         int grass = (int)tileSet.GetTilesIds()[1];
         int dirt = (int)tileSet.GetTilesIds()[0];
         Random rnd = new Random();
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 10; i++)
         {
             if (i == 0){
                 for (int a = 0; a < 3; a++)
@@ -183,6 +191,12 @@ public class Map : Node2D
             if (positions[i].x != -1)
             {
                 tileMap.SetCell(oszlop,i,0);
+                if (oszlop == 9)
+                {
+                    GD.Print($"BUS_STOP2{bus_stop.Position.x}");
+                    //bus_stop.Position = new Vector2(oszlop*64,i*64);
+                    //red_circle.Position = new Vector2(oszlop*64,i*64);
+                }
             }
             else
             {
