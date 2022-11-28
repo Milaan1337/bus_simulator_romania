@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
@@ -13,20 +13,9 @@
 [ext_resource path="res://assets/Images/BarUnder.png" type="Texture" id=11]
 [ext_resource path="res://scripts/spikestrip.cs" type="Script" id=12]
 [ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=13]
-[ext_resource path="res://assets/Fonts/Rally Blade.otf" type="DynamicFontData" id=14]
 
 [sub_resource type="StreamTexture" id=4]
 flags = 4
-
-[sub_resource type="DynamicFont" id=1]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 9 )
-
-[sub_resource type="DynamicFont" id=2]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 35
@@ -64,24 +53,6 @@ margin_left = 13.0
 margin_top = 7.0
 margin_right = 53.0
 margin_bottom = 21.0
-
-[node name="Money" type="Label" parent="Car/HUD"]
-margin_left = 950.0
-margin_top = 6.0
-margin_right = 1020.0
-margin_bottom = 26.0
-custom_colors/font_color = Color( 0.945098, 1, 0, 1 )
-custom_fonts/font = SubResource( 1 )
-
-[node name="Yourmoney" type="Label" parent="Car/HUD"]
-margin_left = 801.0
-margin_top = 6.0
-margin_right = 945.0
-margin_bottom = 26.0
-custom_colors/font_color = Color( 0.968627, 1, 0, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 2 )
-text = "Your money:"
 
 [node name="Time" type="Label" parent="Car/HUD"]
 margin_left = 451.0
@@ -137,6 +108,9 @@ position = Vector2( 68, 178 )
 stream = ExtResource( 5 )
 volume_db = -80.0
 autoplay = true
+
+[node name="Spiketime" type="Timer" parent="Car"]
+wait_time = 4096.0
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
 position = Vector2( 69, 178 )

@@ -6,13 +6,19 @@ using File = System.IO.File;
 
 public class Timeout : Node2D
 {
-    public Label earn;
+    public Label timelabel;
+    public Label personal_record;
     public override void _Ready()
+    
     {
-        string text = File.ReadAllText(@"save/options.json");
+        AllVariable allVariable = new AllVariable();
+        string text = File.ReadAllText(@"save/times.json");
         var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-        earn = GetNode("Earn") as Label;
-        earn.Text = $"You earned ${get_options.Money_in_game}";
+        timelabel = GetNode("Earn") as Label;
+        personal_record = GetNode("personal_record") as Label;
+        timelabel.Text = $"Your last time: {TimeSpan.FromSeconds(allVariable.time)}";
+        personal_record.Text = $"Your best time: {TimeSpan.FromSeconds((get_options.max_sec))}";
+
     }
     public void _on_BackToMenu_pressed() 
     {

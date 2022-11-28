@@ -38,7 +38,7 @@ public class Map : Node2D
         }
         bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
         bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
-        GD.Print($"BUS_STOP1{bus_stop.Position.x}");
+        //GD.Print($"BUS_STOP1{bus_stop.Position.x}");
         //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
         //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
         red_circle = bus_StopN.GetNode("Sprite") as Sprite;
@@ -78,6 +78,10 @@ public class Map : Node2D
                 drawDirt(i);
             }
         }
+        AllVariable allVariable = new AllVariable();
+        allVariable.maplength = mapLength;
+        GD.Print(allVariable.maplength);
+        GD.Print(mapLength);
     }
 
 
@@ -117,7 +121,7 @@ public class Map : Node2D
                 }
                 break;
         }
-        GD.Print($"{oszlop+1}. oszlopban a {res}. index a dirt.");
+        //GD.Print($"{oszlop+1}. oszlopban a {res}. index a dirt.");
         return res;
     }
 
@@ -138,7 +142,7 @@ public class Map : Node2D
                             default:
                                 break;
                             case 0:
-                                GD.Print("1block" + lastDirtIndex);
+                                //GD.Print("1block" + lastDirtIndex);
                                 randomForm = dirtForm.oneBlock;
                                 positions.Add(new Vector2(oszlop,lastDirtIndex));
                                 break;
@@ -164,7 +168,7 @@ public class Map : Node2D
                             default:
                                 break;
                             case 0:
-                                GD.Print("1block" + lastDirtIndex);
+                                //int("1block" + lastDirtIndex);
                                 randomForm = dirtForm.oneBlock;
                                 positions.Add(new Vector2(oszlop,lastDirtIndex));
                                 break;
@@ -182,7 +186,7 @@ public class Map : Node2D
                             default:
                                 break;
                             case 0:
-                                GD.Print("1block" + lastDirtIndex);
+                                //GD.Print("1block" + lastDirtIndex);
                                 randomForm = dirtForm.oneBlock;
                                 positions.Add(new Vector2(oszlop,lastDirtIndex));
                                 break;

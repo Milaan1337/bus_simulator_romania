@@ -21,10 +21,13 @@ public class Game : Node2D
 	public Timer timer;
 	public Label time;
 	public TextureProgress nitrousbar;
-	public HSlider brightness;
-	public int money;
 	public TimeSpan t;
 	public AllVariable allVariable;
+	public Random rnd;
+	public Camera2D camera;
+	public int first;
+	public int second;
+	public int shake = 1;
 	public string text = File.ReadAllText(@"save/options.json");
 
 	public int gyorsasag = 5;
@@ -34,8 +37,7 @@ public class Game : Node2D
 
 		allVariable = new AllVariable();
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-
-		allVariable.hp = 100;
+		
 		car = GetNode("Car") as Node2D;
 		engine = GetNode("Car/HUD/Engine") as AudioStreamPlayer2D;
 		music = GetNode("Car/HUD/Music") as AudioStreamPlayer2D;
@@ -43,7 +45,11 @@ public class Game : Node2D
 		timer = GetNode("Timer") as Timer;
 		time = GetNode("Car/HUD/Time") as Label;
 		nitrousbar = GetNode("Car/HUD/NitrousBar") as TextureProgress;
-
+		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
+		
+		allVariable.hp = 100;
+		allVariable.nitrous = 0;
+		
 		if(get_options.vsync_is_on == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
 
 		if (get_options.fps_is_on)
@@ -53,31 +59,31 @@ public class Game : Node2D
 
 			switch (get_options.fps_target)
 			{
-				case 1:
+				case 0:
 					Engine.TargetFps = 30;
 					break;
 					
-				case 2:
+				case 1:
 					Engine.TargetFps = 60;
 					break;
 					
-				case 3:
+				case 2:
 					Engine.TargetFps = 120;
 					break;
 					
-				case 4:
+				case 3:
 					Engine.TargetFps = 240;
 					break;
 					
-				case 5:
+				case 4:
 					Engine.TargetFps = 360;
 					break;
-				case 6:
+					
+				case 5:
 					Engine.TargetFps = 10000;
 					break;
 					
 			}
-
 		}
 		else
 		{
@@ -92,11 +98,15 @@ public class Game : Node2D
 		{
 			GetTree().ChangeScene("res://scenes/Menu.tscn");
 		}
-		if (allVariable.nitrous >= 1 && Input.IsActionPressed("nitrous"))
+		if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
 				allVariable.nitrous--;
 				nitrousbar.Value = allVariable.nitrous;
 				allVariable.speed = 1500;
+				rnd = new Random();
+				first = rnd.Next(-5, 5);
+				second = rnd.Next(-5, 5);
+				camera.SetOffset(new Vector2(first * shake, second * shake));
 		}
 		else
 		{

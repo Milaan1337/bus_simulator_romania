@@ -7,29 +7,24 @@ using File = System.IO.File;
 
 public class Bus_stop : Node2D
 {
-	public float x;
-	public float y;
 	public Vector2 position;
 	public Area2D bus_stop;
 	public Node2D car;
 	public KinematicBody2D bus_body;
 	public Sprite circle;
 	public Random rng;
-	public int money;
-    public Label moneylabel;
 	public Timer timer;
+	public int t;
+	public int max_sec;
     public override void _Ready()
 	{
 		setPos();
-        moneylabel = GetNode("../Car/HUD/Money") as Label;
-    }
+	}
 
 	public void setPos()
 	{
-		rng = new Random();
-		x = rng.Next(0,400);
-		y = rng.Next(-400,0);
-		position = new Vector2(x,y);
+		AllVariable allVariable = new AllVariable();
+		position = new Vector2(allVariable.maplength,10);
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
 		car = GetNode("/root/Game/Car") as Node2D;
@@ -37,18 +32,24 @@ public class Bus_stop : Node2D
 		bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 		bus_stop.Position = position;
 		circle.Position = position;
+		bus_body.Position = position;
 	}
 
 	public void _on_Area2D_body_entered(object body)
 	{
 		if (body == bus_body)
 		{
+			string text = File.ReadAllText(@"save/times.json");
+			var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+			AllVariable allVariable = new AllVariable();
 			setPos();
 			//GD.Print(timer.WaitTime - timer.TimeLeft);
-            TimeSpan t = TimeSpan.FromSeconds((int)timer.WaitTime - (int)timer.TimeLeft);
+            t = (int)timer.WaitTime - (int)timer.TimeLeft;
 			GD.Print(t);
-            money += 325;
-        }
+			allVariable.time = t;
+			if (get_options.max_sec < t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+			game_end();
+		}
         else
 		{
 			GD.Print("nem cigo");
@@ -56,38 +57,25 @@ public class Bus_stop : Node2D
 	}
 	public void game_end()
 	{
-		string text = File.ReadAllText(@"save/options.json");
+		string text = File.ReadAllText(@"save/times.json");
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-
 		JObject options = new JObject(
-			new JProperty("MainVolume", (int)get_options.MainVolume),
-			new JProperty("MusicVolume", (int)get_options.MusicVolume),
-			new JProperty("UIVolume", (int)get_options.UIVolume),
-			new JProperty("SoundEffectVolume", (int)get_options.SoundEffectVolume),
-			new JProperty("Money", (int)get_options.Money + money),
-			new JProperty("Fps_is_on", (bool)get_options.fps_is_on),
-			new JProperty("vsync_is_on", (bool)get_options.vsync_is_on),
-			new JProperty("Money_in_game", (int)money),
-			new JProperty("fps_target", (int)get_options.fps_target),
-			new JProperty("display_index", (int)get_options.display_index));
+				new JProperty("max_sec", (int)max_sec),
+				new JProperty("last_sec", (int)t));
+			File.WriteAllText(@"save/times.json", options.ToString());
 
-		File.WriteAllText(@"save/options.json", options.ToString());
+			using (StreamWriter file = File.CreateText(@"save/times.json"))
+			using (JsonTextWriter writer = new JsonTextWriter(file))
+			{
+				options.WriteTo(writer);
+			}
 
-		using (StreamWriter file = File.CreateText(@"save/options.json"))
-		using (JsonTextWriter writer = new JsonTextWriter(file))
-		{
-			options.WriteTo(writer);
-		}
-		money = 0;
 		GetTree().ChangeScene("res://scenes/Timeout.tscn");
 	}
 
 	public override void _Process(float delta)
 	{
-        string textinsec = File.ReadAllText(@"save/options.json");
-        var options = JsonConvert.DeserializeObject<ConfigBody>(textinsec);
-        moneylabel.Text = Convert.ToString(money);
-    }
+	}
 }
 
 

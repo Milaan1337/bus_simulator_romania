@@ -9,17 +9,20 @@ public class Menu : Node2D
 {
 	public AudioStreamPlayer2D MainMusic;
 	public AudioStreamPlayer2D click;
-	public Label money;
+	public Label max_time;
+	
 	public override void _Ready()
 	{
         string text = File.ReadAllText(@"save/options.json");
         var options = JsonConvert.DeserializeObject<ConfigBody>(text);
+        string text2 = File.ReadAllText(@"save/times.json");
+        var options2 = JsonConvert.DeserializeObject<ConfigBody>(text2);
 
         click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
-		money = GetNode("Money") as Label;
+		max_time = GetNode("max_time") as Label;
+		max_time.Text = $"Your best time: {options2.max_sec}";
 		MainMusic.VolumeDb = options.MusicVolume;
-		money.Text = $"Your all money:  ${options.Money}";
 
 		switch (options.display_index)
 		{

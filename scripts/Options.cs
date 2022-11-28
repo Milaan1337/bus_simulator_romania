@@ -41,14 +41,12 @@ public class Options : Node2D
         MusicVolume.Value = options.MusicVolume;
         UIVolume.Value = options.UIVolume;
         SoundEffectVolume.Value = options.SoundEffectVolume;
-        money = options.Money;
         fps_is_onbutton.Pressed = options.fps_is_on;
         vsync_is_on.Pressed = options.vsync_is_on;
         click.VolumeDb = options.UIVolume;
 
         /////////////////////////////////////////////////////////
 
-        fpstarget.AddItem("FPS");
         fpstarget.AddItem("30");
         fpstarget.AddItem("60");
         fpstarget.AddItem("120");
@@ -57,7 +55,6 @@ public class Options : Node2D
         fpstarget.AddItem("Unlimited");
 
         fpstarget.Selected = options.fps_target;
-        fpstarget.SetItemDisabled(0, true);
 
         /////////////////////////////////////////////////////////
 
@@ -66,6 +63,8 @@ public class Options : Node2D
         display.AddItem("Bordless Fullscreen");
 
         display.Selected = options.display_index;
+        fpstar = options.fps_target;
+        displayindex = options.display_index;
 
     }
     public void _on_Display_item_selected(int index)
@@ -89,10 +88,14 @@ public class Options : Node2D
     {
         switch (index)
         {
+            case 0:
+                fpstar = 0;
+                break;
+                
             case 1:
                 fpstar = 1;
                 break;
-                
+            
             case 2:
                 fpstar = 2;
                 break;
@@ -108,10 +111,6 @@ public class Options : Node2D
             case 5:
                 fpstar = 5;
                 break;
-                
-            case 6:
-                fpstar = 6;
-                break;
         }
     }
     public void _on_SaveButton_pressed()
@@ -124,9 +123,7 @@ public class Options : Node2D
             new JProperty("MusicVolume", (int)MusicVolume.Value),
             new JProperty("UIVolume", (int)UIVolume.Value),
             new JProperty("SoundEffectVolume", (int)SoundEffectVolume.Value),
-            new JProperty("Money", (int)money),
             new JProperty("Fps_is_on", (bool)fps_is_onbutton.Pressed),
-            new JProperty("Money_in_game", (int)optionsget.Money_in_game),
             new JProperty("vsync_is_on", (bool)vsync_is_on.Pressed),
             new JProperty("fps_target", (int)fpstar),
             new JProperty("display_index", (int)displayindex));
