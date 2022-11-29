@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playbutton.png-f8e17478f515f8ffdfb1bbcde091fe6f.stex"
+path="res://.import/car.png-87625a9408c2a7e692620fb80342aec1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Images/playbutton.png"
-dest_files=[ "res://.import/playbutton.png-f8e17478f515f8ffdfb1bbcde091fe6f.stex" ]
+source_file="res://assets/Images/car.png"
+dest_files=[ "res://.import/car.png-87625a9408c2a7e692620fb80342aec1.stex" ]
 
 [params]
 

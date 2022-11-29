@@ -23,15 +23,15 @@ public class Options : Node2D
     public int displayindex;
     public override void _Ready()
     {
-        MainVolume = GetNode("MainVolume") as HSlider;
-        MusicVolume = GetNode("MusicVolume") as HSlider;
-        UIVolume = GetNode("UIVolume") as HSlider;
-        SoundEffectVolume = GetNode("SoundEffectVolume") as HSlider;
-        fps_is_onbutton = GetNode("fps_is_on") as CheckButton;
+        MainVolume = GetNode("Audio/MainVolume") as HSlider;
+        MusicVolume = GetNode("Audio/MusicVolume") as HSlider;
+        UIVolume = GetNode("Audio/UIVolume") as HSlider;
+        SoundEffectVolume = GetNode("Audio/SoundEffectVolume") as HSlider;
+        fps_is_onbutton = GetNode("Display/fps_is_on") as CheckButton;
         click = GetNode("Click") as AudioStreamPlayer2D;
-        fpstarget = GetNode("FpsTarget") as OptionButton;
-        display = GetNode("Display") as OptionButton;
-        vsync_is_on = GetNode("VSyncButton") as CheckButton;
+        fpstarget = GetNode("Display/FpsTarget") as OptionButton;
+        display = GetNode("Display/Display_mode") as OptionButton;
+        vsync_is_on = GetNode("Display/VSyncButton") as CheckButton;
 
 
         string text = File.ReadAllText(@"save/options.json");
@@ -145,7 +145,7 @@ public class Options : Node2D
             GetTree().ChangeScene("res://scenes/Menu.tscn");
         }
     }
-    public void _on_TextureButton_pressed()
+    public void _on_BackButton_pressed()
     {
         click.Play();
         GetTree().ChangeScene("res://scenes/Menu.tscn");

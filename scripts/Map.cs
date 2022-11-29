@@ -88,8 +88,8 @@ public class Map : Node2D
         }
         AllVariable allVariable = new AllVariable();
         allVariable.maplength = mapLength;
-        GD.Print(allVariable.maplength);
-        GD.Print(mapLength);
+        //GD.Print(allVariable.maplength);
+        //GD.Print(mapLength);
     }
 
 

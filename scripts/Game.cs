@@ -28,13 +28,14 @@ public class Game : Node2D
 	public int first;
 	public int second;
 	public int shake = 1;
+	public Panel pausepanel;
+	public bool pauseon = false;
 	public string text = File.ReadAllText(@"save/options.json");
 
 	public int gyorsasag = 5;
 
 	public override void _Ready()
 	{
-
 		allVariable = new AllVariable();
 		var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
 		
@@ -46,6 +47,7 @@ public class Game : Node2D
 		time = GetNode("Car/HUD/Time") as Label;
 		nitrousbar = GetNode("Car/HUD/NitrousBar") as TextureProgress;
 		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
+		pausepanel = GetNode("Car/HUD/PausePanel") as Panel;
 		allVariable.hp = 100;
 		allVariable.nitrous = 0;
 		
@@ -95,7 +97,9 @@ public class Game : Node2D
 	{
 		if (Input.IsActionJustPressed("back"))
 		{
-			GetTree().ChangeScene("res://scenes/Menu.tscn");
+			GetTree().Paused = true;
+			if (pauseon == false) { pausepanel.Visible = true; pauseon = true; }
+			else { pausepanel.Visible = false; pauseon = false; }
 		}
 		if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
@@ -117,7 +121,7 @@ public class Game : Node2D
 	{
 		if (fps_is_on == true)
 		{
-			Fps.Text = $"{1 / delta} FPS";
+			Fps.Text = $"{Convert.ToInt32(1 / delta)} FPS";
 		}
 		t = TimeSpan.FromSeconds((int)timer.WaitTime - (int)timer.TimeLeft);
 		time.Text = Convert.ToString(t);

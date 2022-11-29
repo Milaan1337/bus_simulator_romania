@@ -24,8 +24,8 @@ public class Bus_stop : Node2D
 	public void setPos()
 	{
 		AllVariable allVariable = new AllVariable();
-		position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 10* 64);
-		GD.Print(allVariable.maplength);
+		position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 0);
+		//GD.Print(allVariable.maplength);
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
 		car = GetNode("/root/Game/Car") as Node2D;
