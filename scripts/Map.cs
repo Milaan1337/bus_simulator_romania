@@ -287,7 +287,7 @@ public class Map : Node2D
 
     public override void _Process(float delta){
         getTileByPos(car);
-        GD.Print("TILE: " + getTileByPos(car));
+        //GD.Print("TILE: " + getTileByPos(car));
     }
 
     public int getTileByPos(KinematicBody2D body){

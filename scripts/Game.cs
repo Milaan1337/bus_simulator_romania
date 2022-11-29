@@ -46,7 +46,6 @@ public class Game : Node2D
 		time = GetNode("Car/HUD/Time") as Label;
 		nitrousbar = GetNode("Car/HUD/NitrousBar") as TextureProgress;
 		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
-		
 		allVariable.hp = 100;
 		allVariable.nitrous = 0;
 		

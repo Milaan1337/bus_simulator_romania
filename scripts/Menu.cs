@@ -21,7 +21,7 @@ public class Menu : Node2D
         click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
 		max_time = GetNode("max_time") as Label;
-		max_time.Text = $"Your best time: {options2.max_sec}";
+		max_time.Text = $"Your best time: {TimeSpan.FromSeconds(options2.max_sec)}";
 		MainMusic.VolumeDb = options.MusicVolume;
 
 		switch (options.display_index)

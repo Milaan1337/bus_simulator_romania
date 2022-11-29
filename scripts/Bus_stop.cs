@@ -24,7 +24,8 @@ public class Bus_stop : Node2D
 	public void setPos()
 	{
 		AllVariable allVariable = new AllVariable();
-		position = new Vector2(allVariable.maplength,10);
+		position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 10* 64);
+		GD.Print(allVariable.maplength);
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
 		car = GetNode("/root/Game/Car") as Node2D;
@@ -32,7 +33,6 @@ public class Bus_stop : Node2D
 		bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 		bus_stop.Position = position;
 		circle.Position = position;
-		bus_body.Position = position;
 	}
 
 	public void _on_Area2D_body_entered(object body)
@@ -47,12 +47,12 @@ public class Bus_stop : Node2D
             t = (int)timer.WaitTime - (int)timer.TimeLeft;
 			GD.Print(t);
 			allVariable.time = t;
-			if (get_options.max_sec < t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+			if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
 			game_end();
 		}
         else
 		{
-			GD.Print("nem cigo");
+			GD.Print("Nem futott ez le!!");
 		}
 	}
 	public void game_end()

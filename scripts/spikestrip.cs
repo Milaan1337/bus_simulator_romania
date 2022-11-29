@@ -54,7 +54,7 @@ public class spikestrip : Node2D
             AllVariable allVariable = new AllVariable();
             t = (int)maintimer.WaitTime - (int)maintimer.TimeLeft;
             allVariable.time = t;
-            if (get_options.max_sec < t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+            if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
             game_end();
         }
         
