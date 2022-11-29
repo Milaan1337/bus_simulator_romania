@@ -15,6 +15,11 @@ public class Map : Node2D
     public Node2D bus_StopN;
     public Sprite red_circle;
     public Area2D bus_stop;
+    public Node2D car_node;
+    public KinematicBody2D car;
+    public int tile_width = 64;
+    public int tile_height = 64;
+    public float multiplier = 8.28125f;
     public enum dirtForm
     {
         oneBlock,
@@ -38,6 +43,9 @@ public class Map : Node2D
         }
         bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
         bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
+
+        car_node = GetNode("/root/Game/Car") as Node2D;
+        car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
         //GD.Print($"BUS_STOP1{bus_stop.Position.x}");
         //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
         //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
@@ -275,6 +283,32 @@ public class Map : Node2D
 
         lastDirtForm = randomForm;
 
+    }
+
+    public override void _Process(float delta){
+        getTileByPos(car);
+        GD.Print("TILE: " + getTileByPos(car));
+    }
+
+    public int getTileByPos(KinematicBody2D body){
+        int tile_id;
+        Vector2 car_pos = car.Position;
+        //GD.Print($"A kocsi {car_pos.x} x és {car_pos.y} y");
+        Vector2 tile_pos = new Vector2(-(car_pos.x/(tile_width*multiplier)),-(car_pos.y/(tile_height*multiplier)));
+        int tile = tileMap.GetCell((int)tile_pos.x,(int)tile_pos.y);
+        switch (tile){
+            default:
+                tile_id = -1;
+                break;
+            case 0:
+                tile_id = 0;
+                break;
+            case 1:
+                tile_id = 1;
+                break; 
+        }
+
+        return tile_id;
     }
 
 
