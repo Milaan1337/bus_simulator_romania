@@ -95,12 +95,6 @@ public class Game : Node2D
 	}
 	public override void _Input(InputEvent esemeny)
 	{
-		if (Input.IsActionJustPressed("back"))
-		{
-			GetTree().Paused = true;
-			if (pauseon == false) { pausepanel.Visible = true; pauseon = true; }
-			else { pausepanel.Visible = false; pauseon = false; }
-		}
 		if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
 				allVariable.nitrous--;
@@ -117,6 +111,18 @@ public class Game : Node2D
 		}
 		
 	}
+	public void _on_quit_pressed()
+	{
+        GetTree().Paused = false;
+		GetTree().ChangeScene("res://scenes/Menu.tscn");
+	}
+
+    public void _on_return_pressed()
+    {
+        pausepanel.Visible = false;
+        allVariable.pauseon = false;
+        GetTree().Paused = false;
+    }
 	public override void _Process(float delta)
 	{
 		if (fps_is_on == true)

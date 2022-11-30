@@ -15,7 +15,7 @@
 [ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=13]
 [ext_resource path="res://assets/Images/exitbutton.png" type="Texture" id=14]
 [ext_resource path="res://assets/Images/backbutton.png" type="Texture" id=15]
-[ext_resource path="res://assets/Images/optionsbutton.png" type="Texture" id=16]
+[ext_resource path="res://scripts/PausePanel.cs" type="Script" id=17]
 
 [sub_resource type="StreamTexture" id=4]
 flags = 4
@@ -120,16 +120,17 @@ autoplay = true
 pause_mode = 2
 visible = false
 self_modulate = Color( 1, 1, 1, 0.686275 )
-margin_left = 367.0
-margin_top = 124.0
-margin_right = 618.0
-margin_bottom = 345.0
+margin_left = 383.0
+margin_top = 132.0
+margin_right = 634.0
+margin_bottom = 315.0
+script = ExtResource( 17 )
 
 [node name="return" type="TextureButton" parent="Car/HUD/PausePanel"]
 margin_left = 31.0
-margin_top = 18.0
+margin_top = 30.0
 margin_right = 81.0
-margin_bottom = 68.0
+margin_bottom = 80.0
 texture_normal = ExtResource( 15 )
 expand = true
 
@@ -142,27 +143,11 @@ custom_fonts/font = SubResource( 7 )
 text = "Return to game"
 align = 1
 
-[node name="options" type="TextureButton" parent="Car/HUD/PausePanel"]
-margin_left = 30.0
-margin_top = 74.0
-margin_right = 84.0
-margin_bottom = 139.0
-texture_normal = ExtResource( 16 )
-expand = true
-
-[node name="OptionsLabel" type="Label" parent="Car/HUD/PausePanel/options"]
-margin_left = 76.0
-margin_top = 19.0
-margin_right = 191.0
-margin_bottom = 44.0
-custom_fonts/font = SubResource( 7 )
-text = "Settings"
-
 [node name="quit" type="TextureButton" parent="Car/HUD/PausePanel"]
-margin_left = 33.0
-margin_top = 141.0
-margin_right = 83.0
-margin_bottom = 191.0
+margin_left = 31.0
+margin_top = 93.0
+margin_right = 82.0
+margin_bottom = 143.0
 texture_normal = ExtResource( 14 )
 expand = true
 
@@ -183,7 +168,7 @@ position = Vector2( 2.99976, 13 )
 scale = Vector2( 4.1497, 4.88095 )
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
-position = Vector2( 69, 178 )
+position = Vector2( 65, 175 )
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 
@@ -200,5 +185,4 @@ rotation = 1.5708
 scale = Vector2( 0.4, 0.5 )
 
 [connection signal="pressed" from="Car/HUD/PausePanel/return" to="." method="_on_return_pressed"]
-[connection signal="pressed" from="Car/HUD/PausePanel/options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Car/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]
