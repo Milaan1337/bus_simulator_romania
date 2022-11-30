@@ -20,6 +20,7 @@ public class Map : Node2D
     public int tile_width = 64;
     public int tile_height = 64;
     public float multiplier = 8.28125f;
+    public AllVariable allVariable1 = new AllVariable();
     public enum dirtForm
     {
         oneBlock,
@@ -28,6 +29,8 @@ public class Map : Node2D
     }
     public int lastDirtIndex;
     public dirtForm lastDirtForm;
+
+    public int lastBlock;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -286,15 +289,17 @@ public class Map : Node2D
     }
 
     public override void _Process(float delta){
-        getTileByPos(car);
+        int curTile = getTileByPos(car);
+        applyCarEffect(curTile);
         //GD.Print("TILE: " + getTileByPos(car));
     }
 
     public int getTileByPos(KinematicBody2D body){
         int tile_id;
-        Vector2 car_pos = car.Position;
+        Vector2 car_pos = car_node.Position + car.Position;
         //GD.Print($"A kocsi {car_pos.x} x és {car_pos.y} y");
-        Vector2 tile_pos = new Vector2(-(car_pos.x/(tile_width*multiplier)),-(car_pos.y/(tile_height*multiplier)));
+        Vector2 tile_pos = new Vector2(-(car_pos.x/(tile_width*multiplier)),-car_pos.y/((tile_height+1)*multiplier));
+        GD.Print(tile_pos);
         int tile = tileMap.GetCell((int)tile_pos.x,(int)tile_pos.y);
         switch (tile){
             default:
@@ -309,6 +314,20 @@ public class Map : Node2D
         }
 
         return tile_id;
+    }
+
+    public void applyCarEffect(int block){
+        bool blockChanged = block == lastBlock;
+        if (blockChanged){
+                if (block == 0){
+                    //Jó
+                    allVariable1.speed = 400;
+                }
+                else{
+                    allVariable1.speed = 100;
+                }
+        }
+        lastBlock = block;
     }
 
 

@@ -10,6 +10,7 @@ height = 42.0002
 [node name="Cars" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 3 )
 scale = Vector2( 2, 2 )
 z_index = 11
 script = ExtResource( 2 )

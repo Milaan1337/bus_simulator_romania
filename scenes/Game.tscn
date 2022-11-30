@@ -47,7 +47,6 @@ z_index = -265
 texture = SubResource( 4 )
 
 [node name="Car" parent="." instance=ExtResource( 2 )]
-position = Vector2( 69, 178 )
 rotation = -3.14159
 scale = Vector2( 0.5, 0.5 )
 z_index = 40
