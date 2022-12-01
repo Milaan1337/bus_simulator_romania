@@ -10,7 +10,7 @@ height = 42.0002
 [node name="Cars" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 0, 3 )
+position = Vector2( 226, 287 )
 scale = Vector2( 2, 2 )
 z_index = 11
 script = ExtResource( 2 )
@@ -26,7 +26,5 @@ rotation = 1.5708
 shape = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
-position = Vector2( 0.5, -0.5 )
-rotation = 1.5708
 current = true
 zoom = Vector2( 3, 3 )

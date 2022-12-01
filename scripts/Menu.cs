@@ -48,7 +48,7 @@ public class Menu : Node2D
 	public void _on_PlayButton_pressed()
 	{
 		click.Play();
-		GetTree().ChangeScene("res://scenes/Game.tscn");
+		GetTree().ChangeScene("res://scenes/GameMultiplayer.tscn");
 	}
 	public void _on_OptionsButton_pressed()
 	{
