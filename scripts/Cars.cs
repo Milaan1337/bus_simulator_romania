@@ -23,12 +23,23 @@ public class Cars : KinematicBody2D
     private float _slipSpeed = 10;
     private float _tractionFast = 0.1f;
     private float _tractionSlow = 0.7f;
-    public AllVariable allVariable;
+    public AllVariable allVariable = new AllVariable();
+    public Sprite carsprite;
+    public TextureProgress nitrousbar;
+    public int first;
+	public int second;
+    public int shake = 1;
+    public Random rnd;
+	public Camera2D camera;
     private bool allowInput = true;
 
 
     public override void _Ready()
     {
+        carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite;
+        nitrousbar = GetNode("/root/Game/Car/HUD/NitrousBar") as TextureProgress;
+		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
+
     }
 
 
@@ -71,6 +82,23 @@ public class Cars : KinematicBody2D
         {
             _acceleration = Transform.x * _breaking;
         }
+
+        if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
+		{
+				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/BarUpper.png");
+				allVariable.nitrous--;
+				nitrousbar.Value = allVariable.nitrous;
+				allVariable.speed = 1500;
+				rnd = new Random();
+				first = rnd.Next(-5, 5);
+				second = rnd.Next(-5, 5);
+				camera.SetOffset(new Vector2(first * shake, second * shake));
+		}
+		else
+		{
+			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
+            allVariable.speed = 400;
+		}
     }
 
 

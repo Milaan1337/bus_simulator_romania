@@ -97,7 +97,7 @@ public class Game : Node2D
 		engine.VolumeDb = get_options.SoundEffectVolume;
 	}
 	public override void _Input(InputEvent esemeny)
-	{
+	{/*
 		if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
 				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/BarUpper.png");
@@ -113,7 +113,7 @@ public class Game : Node2D
 		{
 			allVariable.speed = 400;
 			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
-		}
+		}*/
 		
 	}
 	public void _on_quit_pressed()

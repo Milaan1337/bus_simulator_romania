@@ -320,7 +320,7 @@ public class Map : Node2D
                     allVariable1.speed = 400;
                 }
                 else{
-                    allVariable1.speed = 100;
+                    allVariable1.speed = 400;
                 }
         }
         lastBlock = block;
