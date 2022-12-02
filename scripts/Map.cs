@@ -21,7 +21,7 @@ public class Map : Node2D
     public int tile_height = 64;
     public float multiplier = 8.28125f;
     [Export]public PackedScene sensor;
-    public AllVariable allVariable1 = new AllVariable();
+    public AllVariable allVariable = new AllVariable();
     public enum dirtForm
     {
         oneBlock,
@@ -103,7 +103,6 @@ public class Map : Node2D
                 drawDirt(i);
             }
         }
-        AllVariable allVariable = new AllVariable();
         allVariable.maplength = mapLength;
         //GD.Print(allVariable.maplength);
         //GD.Print(mapLength);
@@ -277,7 +276,7 @@ public class Map : Node2D
                 tileMap.SetCell(oszlop,(int)positions[i].y,0);
             }
             if (type == "dirt"){
-                Node2D sensorChild1 = (Node2D)sensor.Instance();
+                Node2D sensorChild1 = (Node2D)sensor.Instance();        
                 sensorChild1.Position = pos_to_place;
                 sensorChild1.Set("type","dirt");
                 AddChild(sensorChild1);
