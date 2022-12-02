@@ -115,6 +115,7 @@ autoplay = true
 
 [node name="PausePanel" type="Panel" parent="Car/HUD"]
 pause_mode = 2
+visible = false
 self_modulate = Color( 1, 1, 1, 0.686275 )
 margin_left = 383.0
 margin_top = 132.0
