@@ -16,7 +16,7 @@ public class Sensor : Node2D
 
     public void _on_Area2D_body_entered(object body){
         if (body is KinematicBody2D){
-            GD.Print("KINEMATIC XD");
+            GD.Print("TYPE" + type);
         }
     }
 

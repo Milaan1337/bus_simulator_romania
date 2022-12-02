@@ -257,13 +257,22 @@ public class Map : Node2D
         {
             if (tileMap.GetCell(oszlop, i) == -1)
             {
-                //#TODO MEGCSINÁLNI AREA2D-ket minden block-ra igy kezelve az utkozeseket.
-                Vector2 pos = new Vector2(oszlop*tile_width*multiplier,i*tile_height*multiplier);
-
+                //#TODO MEGCSINÁLNI AREA2D-ket minden block-ra igy kezelve az utkozeseket POZICIO KELL XDDDD.
+                Vector2 pos = new Vector2(-(oszlop*tile_width*multiplier),-(i*tile_height*multiplier));
+                Node2D sensorChild = (Node2D)sensor.Instance();
+                sensorChild.Position = pos;
+                GD.Print(sensorChild.Position);
+                sensorChild.Set("type","grass");
+                AddChild(sensorChild);
                 tileMap.SetCell(oszlop,i,1);
             }
             if (positions.Count > i && positions[i] != null)
             {
+                Vector2 pos = new Vector2(-(oszlop*tile_width*multiplier),-((int)positions[i].y*tile_height*multiplier));
+                Node2D sensorChild = (Node2D)sensor.Instance();
+                sensorChild.Position = pos;
+                sensorChild.Set("type","dirt");
+                AddChild(sensorChild);
                // GD.Print($"Objektum lerakva {positions[i].y}. helyre!");
                 tileMap.SetCell(oszlop,(int)positions[i].y,0);
             }
@@ -281,8 +290,8 @@ public class Map : Node2D
 
     public int getTileByPos(KinematicBody2D body){
         int tile_id;
-        Vector2 car_pos = new Vector2(car.Position.x *-1,car.Position.y *-1);
-        //GD.Print($"A kocsi {car_pos.x} x és {car_pos.y} y");
+        Vector2 car_pos = new Vector2(car.Position.x,car.Position.y);
+
        //Vector2 tile_pos = new Vector2((car_pos.x/(tile_width*multiplier)),car_pos.y/((tile_height+1)*multiplier));
         Vector2 tile_pos = tileMap.WorldToMap(car.Position/multiplier);
         //GD.Print(tile_pos);
