@@ -251,26 +251,6 @@ public class Map : Node2D
                 }
                 break;
         }
-        /*
-        for (int i = 0; i < mapHeight; i++)
-        {
-            //GD.Print($"{oszlop}.oszlop {i}. eleme egy : {positions[i]}");
-            if (positions[i].x == 0 && positions[i].y == 0)
-            {
-                tileMap.SetCell(oszlop,i,1);
-            }
-            else
-            {
-                tileMap.SetCell(oszlop,i,0);
-                if (oszlop == mapLength-1)
-                {
-                    //GD.Print($"BUS_STOP2{bus_stop.Position.x}");
-                    //bus_stop.Position = new Vector2(oszlop*64,i*64);
-                    //red_circle.Position = new Vector2(oszlop*64,i*64);
-                }
-            }
-        }
-        */
         for (int i = 0; i < mapHeight; i++)
         {
             if (tileMap.GetCell(oszlop, i) == -1)

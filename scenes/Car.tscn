@@ -14,6 +14,7 @@ position = Vector2( 226, 287 )
 scale = Vector2( 2, 2 )
 z_index = 11
 script = ExtResource( 2 )
+type = "player1"
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D"]
 position = Vector2( 0, -4.76837e-07 )

@@ -13,10 +13,13 @@ public class GameMultiplayer : Node2D
 
 	
 	public override void _Ready()
-	{/*
+	{
+		firstplayer = GetNode("VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D") as KinematicBody2D;
+		firstplayer.Set("type","player1");
+		GD.Print(firstplayer);
+		/*
 		firstviewport = GetNode("$HBoxContainer/ViewportContainer/Viewport") as Viewport;
 		firstcamera = GetNode("$HBoxContainer/ViewportContainer/Viewport/Camera2D") as Camera2D;
-		firstplayer = GetNode("$HBoxContainer/ViewportContainer/Viewport/CarMultiPlayer") as KinematicBody2D;
 		secondviewport = GetNode("$HBoxContainer/ViewportContainer2/Viewport") as Viewport;
 		secondcamera = GetNode("$HBoxContainer/ViewportContainer2/Viewport/Camera2D") as Camera2D;
 		secondplayer = GetNode("$HBoxContainer/ViewportContainer/Viewport/CarMultiPlayer") as KinematicBody2D;

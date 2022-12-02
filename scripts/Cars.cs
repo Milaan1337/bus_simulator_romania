@@ -6,7 +6,11 @@ public class Cars : KinematicBody2D
     [Export] private float _steeringAngle = 15.0f;
     [Export] private int _enginePoser = 400;
     [Export] private float _maxSpeedReverse = 250.0f;
-
+    [Export] private string type;
+    public string forward_key;
+    public string backward_key;
+    public string left_key;
+    public string right_key;
     private float _wheelBase = 70.0f;
 
     private Vector2 _velocity = Vector2.Zero;
@@ -26,6 +30,7 @@ public class Cars : KinematicBody2D
     public override void _Ready()
     {
     }
+
 
 
     public void ToggleInput()

@@ -60,10 +60,12 @@ public class CarMultiPlayer : KinematicBody2D
 
         if (Input.IsActionPressed("secondforward"))
         {
+            GD.Print("második előre");
             _acceleration = Transform.x * _enginePoser;
         }
         if (Input.IsActionPressed("secondbackward"))
         {
+            GD.Print("második hátra");
             _acceleration = Transform.x * _breaking;
         }
     }
