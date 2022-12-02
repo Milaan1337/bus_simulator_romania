@@ -85,10 +85,10 @@ custom_fonts/font = SubResource( 5 )
 text = "N      I      T      R      O"
 
 [node name="HpBar" type="TextureProgress" parent="Car/HUD"]
-margin_left = 372.0
-margin_top = 570.0
-margin_right = 868.0
-margin_bottom = 646.0
+margin_left = 4.0
+margin_top = 577.0
+margin_right = 500.0
+margin_bottom = 653.0
 rect_scale = Vector2( 0.6, 0.25 )
 value = 100.0
 texture_under = ExtResource( 11 )

@@ -26,6 +26,8 @@ public class Cars : KinematicBody2D
     public AllVariable allVariable = new AllVariable();
     public Sprite carsprite;
     public TextureProgress nitrousbar;
+    public Sprite secondcarsprite;
+    public TextureProgress secondnitrousbar;
     public int first;
 	public int second;
     public int shake = 1;
@@ -36,10 +38,21 @@ public class Cars : KinematicBody2D
 
     public override void _Ready()
     {
-        carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite;
-        nitrousbar = GetNode("/root/Game/Car/HUD/NitrousBar") as TextureProgress;
-		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
-
+        if (allVariable.singleplay == true)
+        {
+            carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite; 
+            nitrousbar = GetNode("/root/Game/Car/HUD/NitrousBar") as TextureProgress; 
+            camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
+        }
+        else
+        {
+            carsprite = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D/Sprite") as Sprite; 
+            nitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer/HUD/NitrousBar") as TextureProgress;
+            secondcarsprite = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D/Sprite") as Sprite;
+            secondnitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer2/HUD/NitrousBar") as TextureProgress;
+            camera = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Camera2D") as Camera2D;
+        }
+        
     }
 
 
@@ -85,7 +98,7 @@ public class Cars : KinematicBody2D
 
         if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
-				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/BarUpper.png");
+				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/nitrouscar.png");
 				allVariable.nitrous--;
 				nitrousbar.Value = allVariable.nitrous;
 				allVariable.speed = 1500;

@@ -6,6 +6,7 @@ public class AllVariable
     private static int maplengthvalue;
     private static int hpvalue = 100;
     private static bool pauseonvalue = false;
+    private static bool singleplayvalue = false;
 
     public int nitrous 
     {
@@ -36,5 +37,11 @@ public class AllVariable
     {
         get { return pauseonvalue; }
         set { pauseonvalue = value; }
+    }
+
+    public bool singleplay
+    {
+        get { return singleplayvalue; }
+        set { singleplayvalue = value; }
     }
 }

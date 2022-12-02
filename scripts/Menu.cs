@@ -5,26 +5,29 @@ using System.Collections.Generic;
 using System.Runtime.Serialization.Json;
 using System.IO;
 using File = System.IO.File;
+
 public class Menu : Node2D
 {
 	public AudioStreamPlayer2D MainMusic;
 	public AudioStreamPlayer2D click;
 	public Label max_time;
-	
+	public AllVariable allVariable;
+
 	public override void _Ready()
 	{
-        string text = File.ReadAllText(@"save/options.json");
-        var options = JsonConvert.DeserializeObject<ConfigBody>(text);
-        string text2 = File.ReadAllText(@"save/times.json");
-        var options2 = JsonConvert.DeserializeObject<ConfigBody>(text2);
+		string text = File.ReadAllText(@"save/options.json");
+		var options = JsonConvert.DeserializeObject<ConfigBody>(text);
+		string text2 = File.ReadAllText(@"save/times.json");
+		var options2 = JsonConvert.DeserializeObject<ConfigBody>(text2);
 
-        click = GetNode("Click") as AudioStreamPlayer2D;
+		click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
 		max_time = GetNode("max_time") as Label;
 		max_time.Text = $"Your best time: {TimeSpan.FromSeconds(options2.max_sec)}";
 		MainMusic.VolumeDb = options.MusicVolume;
 
-
+		allVariable = new AllVariable();
+			
 		switch (options.display_index)
 		{
 			case 0:
@@ -42,15 +45,24 @@ public class Menu : Node2D
 				OS.WindowFullscreen = false;
 				OS.WindowBorderless = false;
 				break;
-				
+
 		}
 	}
 
 	public void _on_PlayButton_pressed()
 	{
 		click.Play();
+		allVariable.singleplay = true;
 		GetTree().ChangeScene("res://scenes/Game.tscn");
 	}
+
+	public void _on_PlayButton2_pressed()
+	{
+		click.Play();
+		allVariable.singleplay = false;
+		GetTree().ChangeScene("res://scenes/GameMultiplayer.tscn");
+	}
+
 	public void _on_OptionsButton_pressed()
 	{
 		click.Play();

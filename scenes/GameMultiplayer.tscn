@@ -67,7 +67,7 @@ margin_bottom = 21.0
 [node name="Time" type="Label" parent="VBoxContainer/ViewportContainer/HUD"]
 margin_left = 451.0
 margin_top = 5.0
-margin_right = 554.0
+margin_right = 635.0
 margin_bottom = 48.0
 custom_fonts/font = SubResource( 1 )
 
@@ -91,10 +91,10 @@ custom_fonts/font = SubResource( 2 )
 text = "N      I      T      R      O"
 
 [node name="HpBar" type="TextureProgress" parent="VBoxContainer/ViewportContainer/HUD"]
-margin_left = 372.0
-margin_top = 570.0
-margin_right = 868.0
-margin_bottom = 646.0
+margin_left = 8.0
+margin_top = 571.0
+margin_right = 504.0
+margin_bottom = 647.0
 rect_scale = Vector2( 0.6, 0.25 )
 value = 100.0
 texture_under = ExtResource( 8 )
@@ -107,17 +107,6 @@ margin_right = 363.667
 margin_bottom = 89.0
 custom_fonts/font = SubResource( 3 )
 text = "HP"
-
-[node name="Music" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer/HUD"]
-position = Vector2( 65, 177 )
-stream = ExtResource( 5 )
-autoplay = true
-
-[node name="Engine" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer/HUD"]
-position = Vector2( 68, 178 )
-stream = ExtResource( 9 )
-volume_db = -80.0
-autoplay = true
 
 [node name="PausePanel" type="Panel" parent="VBoxContainer/ViewportContainer/HUD"]
 pause_mode = 2
@@ -171,6 +160,17 @@ custom_fonts/font = SubResource( 4 )
 text = "Back to menu"
 align = 1
 
+[node name="Engine" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer/HUD"]
+position = Vector2( 68, 178 )
+stream = ExtResource( 9 )
+volume_db = -80.0
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer/HUD"]
+position = Vector2( 65, 177 )
+stream = ExtResource( 5 )
+autoplay = true
+
 [node name="ViewportContainer2" type="ViewportContainer" parent="VBoxContainer"]
 margin_top = 304.0
 margin_right = 1025.0
@@ -197,16 +197,16 @@ margin_right = 53.0
 margin_bottom = 21.0
 
 [node name="Time" type="Label" parent="VBoxContainer/ViewportContainer2/HUD"]
-margin_left = 451.0
-margin_top = 5.0
-margin_right = 554.0
-margin_bottom = 48.0
+margin_left = 419.0
+margin_top = 6.0
+margin_right = 622.0
+margin_bottom = 49.0
 custom_fonts/font = SubResource( 1 )
 
 [node name="NitrousBar" type="TextureProgress" parent="VBoxContainer/ViewportContainer2/HUD"]
-margin_left = 979.0
+margin_left = 980.0
 margin_top = 287.0
-margin_right = 1475.0
+margin_right = 1476.0
 margin_bottom = 363.0
 rect_rotation = -90.0
 rect_scale = Vector2( 0.3, 0.4 )
@@ -223,10 +223,10 @@ custom_fonts/font = SubResource( 2 )
 text = "N      I      T      R      O"
 
 [node name="HpBar" type="TextureProgress" parent="VBoxContainer/ViewportContainer2/HUD"]
-margin_left = 382.0
-margin_top = 271.0
-margin_right = 878.0
-margin_bottom = 347.0
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 501.0
+margin_bottom = 82.0
 rect_scale = Vector2( 0.6, 0.25 )
 value = 100.0
 texture_under = ExtResource( 8 )
@@ -240,65 +240,9 @@ margin_bottom = 89.0
 custom_fonts/font = SubResource( 3 )
 text = "HP"
 
-[node name="Music" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer2/HUD"]
-position = Vector2( 65, 177 )
-stream = ExtResource( 5 )
-autoplay = true
+[node name="Timer" type="Timer" parent="VBoxContainer"]
+wait_time = 1000.0
+autostart = true
 
-[node name="Engine" type="AudioStreamPlayer2D" parent="VBoxContainer/ViewportContainer2/HUD"]
-position = Vector2( 68, 178 )
-stream = ExtResource( 9 )
-volume_db = -80.0
-autoplay = true
-
-[node name="PausePanel" type="Panel" parent="VBoxContainer/ViewportContainer2/HUD"]
-pause_mode = 2
-visible = false
-self_modulate = Color( 1, 1, 1, 0.686275 )
-margin_left = 383.0
-margin_top = 132.0
-margin_right = 634.0
-margin_bottom = 315.0
-script = ExtResource( 11 )
-
-[node name="return" type="TextureButton" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel"]
-margin_left = 31.0
-margin_top = 29.0
-margin_right = 231.0
-margin_bottom = 79.0
-expand = true
-
-[node name="ReturnLabel" type="Label" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel/return"]
-margin_left = 65.0
-margin_top = 14.0
-margin_right = 200.0
-margin_bottom = 39.0
-custom_fonts/font = SubResource( 4 )
-text = "Return to game"
-align = 1
-
-[node name="Sprite" type="Sprite" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel/return"]
-position = Vector2( 28, 26 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 7 )
-
-[node name="quit" type="TextureButton" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel"]
-margin_left = 31.0
-margin_top = 95.0
-margin_right = 231.0
-margin_bottom = 145.0
-expand = true
-
-[node name="Sprite" type="Sprite" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel/quit"]
-position = Vector2( 31, 23 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 12 )
-
-[node name="QuitLabel" type="Label" parent="VBoxContainer/ViewportContainer2/HUD/PausePanel/quit"]
-margin_left = 59.0
-margin_top = 11.0
-margin_right = 194.0
-margin_bottom = 36.0
-custom_fonts/font = SubResource( 4 )
-text = "Back to menu"
-align = 1
+[connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]
