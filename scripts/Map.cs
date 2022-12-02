@@ -21,7 +21,7 @@ public class Map : Node2D
     public int tile_height = 64;
     public float multiplier = 8.28125f;
     [Export]public PackedScene sensor;
-    public AllVariable allVariable1 = new AllVariable();
+    public AllVariable allVariable = new AllVariable();
     public enum dirtForm
     {
         oneBlock,
@@ -67,8 +67,20 @@ public class Map : Node2D
                 {
                     if (a != 2){
                         tileMap.SetCell(i,a,grass);
+
+                        Vector2 pos = new Vector2((i*tile_width),(a*tile_height));
+                        Node2D sensorChild = (Node2D)sensor.Instance();
+                        sensorChild.Position = pos;
+                        sensorChild.Set("type","grass");
+                        AddChild(sensorChild);
+
                     }else{
                         tileMap.SetCell(i,a,dirt);
+                        Vector2 pos = new Vector2((i*tile_width),(a*tile_height));
+                        Node2D sensorChild = (Node2D)sensor.Instance();
+                        sensorChild.Position = pos;
+                        sensorChild.Set("type","dirt");
+                        AddChild(sensorChild);
                     }
                 }
 
@@ -91,7 +103,6 @@ public class Map : Node2D
                 drawDirt(i);
             }
         }
-        AllVariable allVariable = new AllVariable();
         allVariable.maplength = mapLength;
         //GD.Print(allVariable.maplength);
         //GD.Print(mapLength);
@@ -221,14 +232,11 @@ public class Map : Node2D
                     case 0:
                         randomForm = dirtForm.oneBlock;
                         positions.Add(new Vector2(oszlop,0));
-                        //positions[1] = new Vector2(-1,-1);
-                        //ositions[2] = new Vector2(-1,-1);
                         break;
                     case 1:
                         randomForm = dirtForm.oneDown;
                         positions.Add(new Vector2(oszlop,0));
                         positions.Add(new Vector2(oszlop,1));
-                        //positions[2] = new Vector2(-1,-1);
                         break;
                 }
                 break;
@@ -240,13 +248,10 @@ public class Map : Node2D
                         break;
                     case 0:
                         randomForm = dirtForm.oneBlock;
-                        //positions[0] = new Vector2(-1,-1);
-                        //positions[1] = new Vector2(-1,-1);
                         positions.Add(new Vector2(oszlop,mapHeight-1));
                         break;
                     case 1:
                         randomForm = dirtForm.oneUp;
-                        //positions[0] = new Vector2(-1,-1);
                         positions.Add(new Vector2(oszlop,mapHeight-2));
                         positions.Add(new Vector2(oszlop,mapHeight-1));
                         break;
@@ -255,27 +260,28 @@ public class Map : Node2D
         }
         for (int i = 0; i < mapHeight; i++)
         {
+            Vector2 pos_to_place = new Vector2();
+            string type = "grass";
             if (tileMap.GetCell(oszlop, i) == -1)
             {
-                //#TODO MEGCSINÁLNI AREA2D-ket minden block-ra igy kezelve az utkozeseket POZICIO KELL XDDDD.
-                Vector2 pos = new Vector2(-(oszlop*tile_width*multiplier),-(i*tile_height*multiplier));
-                Node2D sensorChild = (Node2D)sensor.Instance();
-                sensorChild.Position = pos;
-                GD.Print(sensorChild.Position);
-                sensorChild.Set("type","grass");
-                AddChild(sensorChild);
+                pos_to_place = new Vector2((oszlop*tile_width),(i*tile_height));
+                type = "grass";
                 tileMap.SetCell(oszlop,i,1);
             }
             if (positions.Count > i && positions[i] != null)
-            {
-                Vector2 pos = new Vector2(-(oszlop*tile_width*multiplier),-((int)positions[i].y*tile_height*multiplier));
-                Node2D sensorChild = (Node2D)sensor.Instance();
-                sensorChild.Position = pos;
-                sensorChild.Set("type","dirt");
-                AddChild(sensorChild);
+            {  
+                pos_to_place = new Vector2((oszlop*tile_width),((int)positions[i].y*tile_height));
+                type = "dirt";
                // GD.Print($"Objektum lerakva {positions[i].y}. helyre!");
                 tileMap.SetCell(oszlop,(int)positions[i].y,0);
             }
+            if (type == "dirt"){
+                Node2D sensorChild1 = (Node2D)sensor.Instance();        
+                sensorChild1.Position = pos_to_place;
+                sensorChild1.Set("type","dirt");
+                AddChild(sensorChild1);
+            }
+           
         }
 
         lastDirtForm = randomForm;
@@ -284,7 +290,6 @@ public class Map : Node2D
 
     public override void _Process(float delta){
         int curTile = getTileByPos(car);
-        applyCarEffect(curTile);
         //GD.Print("TILE: " + getTileByPos(car));
     }
 
@@ -310,20 +315,6 @@ public class Map : Node2D
         }
 
         return tile_id;
-    }
-
-    public void applyCarEffect(int block){
-        bool blockChanged = block == lastBlock;
-        if (blockChanged){
-                if (block == 0){
-                    //Jó
-                    allVariable1.speed = 400;
-                }
-                else{
-                    allVariable1.speed = 400;
-                }
-        }
-        lastBlock = block;
     }
 
 
