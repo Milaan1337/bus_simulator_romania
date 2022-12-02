@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Fonts/Rally Blade.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/Images/exitbutton.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Timeout.cs" type="Script" id=3]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=4]
-
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -16,6 +15,10 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
 font_data = ExtResource( 4 )
 
 [node name="Timeout" type="Node2D"]
@@ -36,13 +39,6 @@ margin_right = 613.0
 margin_bottom = 219.0
 custom_fonts/font = SubResource( 2 )
 
-[node name="BackToMenu" type="TextureButton" parent="."]
-margin_left = 455.0
-margin_top = 325.0
-margin_right = 605.0
-margin_bottom = 400.0
-texture_normal = ExtResource( 2 )
-
 [node name="personal_record" type="Label" parent="."]
 margin_left = 388.0
 margin_top = 239.0
@@ -50,4 +46,22 @@ margin_right = 648.0
 margin_bottom = 276.0
 custom_fonts/font = SubResource( 3 )
 
-[connection signal="pressed" from="BackToMenu" to="." method="_on_BackToMenu_pressed"]
+[node name="All_in_one" type="TextureButton" parent="."]
+margin_left = 330.0
+margin_top = 321.0
+margin_right = 706.0
+margin_bottom = 448.0
+
+[node name="Sprite" type="Sprite" parent="All_in_one"]
+position = Vector2( 47, 47 )
+texture = ExtResource( 2 )
+
+[node name="gotomenu" type="Label" parent="All_in_one/Sprite"]
+margin_left = 83.0
+margin_top = -22.0
+margin_right = 295.0
+margin_bottom = 27.0
+custom_fonts/font = SubResource( 4 )
+text = "Back to menu"
+
+[connection signal="pressed" from="All_in_one" to="." method="_on_BackToMenu_pressed"]

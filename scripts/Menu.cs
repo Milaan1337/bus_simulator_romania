@@ -24,6 +24,7 @@ public class Menu : Node2D
 		max_time.Text = $"Your best time: {TimeSpan.FromSeconds(options2.max_sec)}";
 		MainMusic.VolumeDb = options.MusicVolume;
 
+
 		switch (options.display_index)
 		{
 			case 0:
