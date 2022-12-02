@@ -20,6 +20,7 @@ public class Map : Node2D
     public int tile_width = 64;
     public int tile_height = 64;
     public float multiplier = 8.28125f;
+    [Export]public PackedScene sensor;
     public AllVariable allVariable1 = new AllVariable();
     public enum dirtForm
     {
@@ -35,6 +36,7 @@ public class Map : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+
         if (mapHeight < 3)
         {
             mapHeight = 3;
@@ -255,6 +257,9 @@ public class Map : Node2D
         {
             if (tileMap.GetCell(oszlop, i) == -1)
             {
+                //#TODO MEGCSINÁLNI AREA2D-ket minden block-ra igy kezelve az utkozeseket.
+                Vector2 pos = new Vector2(oszlop*tile_width*multiplier,i*tile_height*multiplier);
+
                 tileMap.SetCell(oszlop,i,1);
             }
             if (positions.Count > i && positions[i] != null)
@@ -276,10 +281,12 @@ public class Map : Node2D
 
     public int getTileByPos(KinematicBody2D body){
         int tile_id;
-        Vector2 car_pos = car_node.Position + car.Position;
+        Vector2 car_pos = new Vector2(car.Position.x *-1,car.Position.y *-1);
         //GD.Print($"A kocsi {car_pos.x} x és {car_pos.y} y");
-        Vector2 tile_pos = new Vector2(-(car_pos.x/(tile_width*multiplier)),-car_pos.y/((tile_height+1)*multiplier));
-        GD.Print(tile_pos);
+       //Vector2 tile_pos = new Vector2((car_pos.x/(tile_width*multiplier)),car_pos.y/((tile_height+1)*multiplier));
+        Vector2 tile_pos = tileMap.WorldToMap(car.Position/multiplier);
+        //GD.Print(tile_pos);
+        //GD.Print(tile_pos);
         int tile = tileMap.GetCell((int)tile_pos.x,(int)tile_pos.y);
         switch (tile){
             default:

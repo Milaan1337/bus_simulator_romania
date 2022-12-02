@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://assets/Images/BarUpper.png" type="Texture" id=10]
 [ext_resource path="res://assets/Images/BarUnder.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Sensor.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=13]
 [ext_resource path="res://assets/Images/exitbutton.png" type="Texture" id=14]
 [ext_resource path="res://assets/Images/backbutton.png" type="Texture" id=15]
@@ -180,6 +181,9 @@ position = Vector2( 537, 207 )
 position = Vector2( 967, 211 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.5 )
+
+[node name="Sensor" parent="." instance=ExtResource( 12 )]
+scale = Vector2( 5, 5 )
 
 [connection signal="pressed" from="Car/HUD/PausePanel/return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Car/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]
