@@ -25,6 +25,7 @@ public class Game : Node2D
 	public AllVariable allVariable;
 	public Random rnd;
 	public Camera2D camera;
+	public Sprite carsprite;
 	public int first;
 	public int second;
 	public int shake = 1;
@@ -48,6 +49,8 @@ public class Game : Node2D
 		nitrousbar = GetNode("Car/HUD/NitrousBar") as TextureProgress;
 		camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
 		pausepanel = GetNode("Car/HUD/PausePanel") as Panel;
+		carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite;
+
 		allVariable.hp = 100;
 		allVariable.nitrous = 0;
 		
@@ -97,6 +100,7 @@ public class Game : Node2D
 	{
 		if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
 		{
+				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/BarUpper.png");
 				allVariable.nitrous--;
 				nitrousbar.Value = allVariable.nitrous;
 				allVariable.speed = 1500;
@@ -108,6 +112,7 @@ public class Game : Node2D
 		else
 		{
 			allVariable.speed = 400;
+			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
 		}
 		
 	}

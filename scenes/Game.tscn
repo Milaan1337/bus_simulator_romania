@@ -115,7 +115,6 @@ autoplay = true
 
 [node name="PausePanel" type="Panel" parent="Car/HUD"]
 pause_mode = 2
-visible = false
 self_modulate = Color( 1, 1, 1, 0.686275 )
 margin_left = 383.0
 margin_top = 132.0
@@ -125,28 +124,36 @@ script = ExtResource( 17 )
 
 [node name="return" type="TextureButton" parent="Car/HUD/PausePanel"]
 margin_left = 31.0
-margin_top = 30.0
-margin_right = 81.0
-margin_bottom = 80.0
-texture_normal = ExtResource( 15 )
+margin_top = 29.0
+margin_right = 231.0
+margin_bottom = 79.0
 expand = true
 
 [node name="ReturnLabel" type="Label" parent="Car/HUD/PausePanel/return"]
 margin_left = 65.0
-margin_top = 11.0
+margin_top = 14.0
 margin_right = 200.0
-margin_bottom = 36.0
+margin_bottom = 39.0
 custom_fonts/font = SubResource( 7 )
 text = "Return to game"
 align = 1
 
+[node name="Sprite" type="Sprite" parent="Car/HUD/PausePanel/return"]
+position = Vector2( 28, 26 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 15 )
+
 [node name="quit" type="TextureButton" parent="Car/HUD/PausePanel"]
 margin_left = 31.0
-margin_top = 93.0
-margin_right = 82.0
-margin_bottom = 143.0
-texture_normal = ExtResource( 14 )
+margin_top = 95.0
+margin_right = 231.0
+margin_bottom = 145.0
 expand = true
+
+[node name="Sprite" type="Sprite" parent="Car/HUD/PausePanel/quit"]
+position = Vector2( 31, 23 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 14 )
 
 [node name="QuitLabel" type="Label" parent="Car/HUD/PausePanel/quit"]
 margin_left = 59.0
@@ -163,6 +170,7 @@ wait_time = 4096.0
 [node name="Map" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2.99976, 13 )
 scale = Vector2( 4.1497, 4.88095 )
+sensor = null
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]
 position = Vector2( 65, 175 )
