@@ -8,16 +8,26 @@ public class Timeout : Node2D
 {
     public Label timelabel;
     public Label personal_record;
-    public override void _Ready()
+    private AllVariable allVariable;
+    private Label winner;
     
+    public override void _Ready()
     {
-        AllVariable allVariable = new AllVariable();
-        string text = File.ReadAllText(@"save/times.json");
-        var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-        timelabel = GetNode("Earn") as Label;
-        personal_record = GetNode("personal_record") as Label;
-        timelabel.Text = $"Your time: {TimeSpan.FromSeconds(allVariable.time)}";
-        personal_record.Text = $"Your best time: {TimeSpan.FromSeconds((get_options.max_sec))}";
+        allVariable = new AllVariable();
+        if (allVariable.singleplay)
+        {
+            string text = File.ReadAllText(@"save/times.json");
+            var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+            timelabel = GetNode("Earn") as Label;
+            personal_record = GetNode("personal_record") as Label;
+            timelabel.Text = $"Your time: {TimeSpan.FromSeconds(allVariable.time)}";
+            personal_record.Text = $"Your best time: {TimeSpan.FromSeconds((get_options.max_sec))}";   
+        }
+        else
+        {
+            winner = GetNode("/root/Timeout/timeleft") as Label;
+            winner.Text = $"The winner  is: {allVariable.nyertauto}";
+        }
     }
     public void _on_BackToMenu_pressed() 
     {

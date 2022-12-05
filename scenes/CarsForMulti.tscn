@@ -10,8 +10,9 @@ height = 48.0
 [node name="CarMulti" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 119, 89 )
+position = Vector2( 199, 204 )
 rotation = -1.5708
+scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -25,3 +26,7 @@ texture = ExtResource( 1 )
 position = Vector2( -3, 3 )
 rotation = -1.5708
 shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+current = true
+zoom = Vector2( 3, 3 )

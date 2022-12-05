@@ -3,6 +3,7 @@ using Godot;
 public class AllVariable
 {
     private static int nitrovalue;
+    private static int nitrovalue2;
     private static int speedvalue = 400;
     private static int timevalue;
     private static int maplengthvalue;
@@ -15,6 +16,12 @@ public class AllVariable
     {
         get { return nitrovalue; }
         set { nitrovalue = value; }
+    }
+
+    public int nitrous2
+    {
+        get { return nitrovalue2; }
+        set { nitrovalue2 = value; }
     }
     public string nyertauto 
     {

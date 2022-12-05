@@ -38,7 +38,7 @@ public class Cars : KinematicBody2D
 
     public override void _Ready()
     {
-        if (allVariable.singleplay == true)
+        if (allVariable.singleplay)
         {
             carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite; 
             nitrousbar = GetNode("/root/Game/Car/HUD/NitrousBar") as TextureProgress; 
@@ -47,7 +47,7 @@ public class Cars : KinematicBody2D
         else
         {
             carsprite = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D/Sprite") as Sprite; 
-            nitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer/HUD/NitrousBar") as TextureProgress;
+            nitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer2/HUD/NitrousBar") as TextureProgress;
             secondcarsprite = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D/Sprite") as Sprite;
             secondnitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer2/HUD/NitrousBar") as TextureProgress;
             camera = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Camera2D") as Camera2D;

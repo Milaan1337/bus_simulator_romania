@@ -21,10 +21,20 @@ public class CarMultiPlayer : KinematicBody2D
     private float _tractionSlow = 0.7f;
     public AllVariable allVariable;
     private bool allowInput = true;
-
+    public Sprite carsprite;
+    public TextureProgress nitrousbar;
+    public Camera2D camera;
+    public int first;
+    public int second;
+    public int shake = 1;
+    public Random rnd;
 
     public override void _Ready()
     {
+        allVariable = new AllVariable();
+        carsprite = GetNode("/root/Game/VBoxContainer/ViewportContainer2/Viewport/CarMulti/KinematicBody2D/Sprite") as Sprite;
+        nitrousbar = GetNode("/root/Game/VBoxContainer/ViewportContainer/HUD/NitrousBar") as TextureProgress;
+        camera = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Camera2D") as Camera2D;
     }
 
 
@@ -60,20 +70,18 @@ public class CarMultiPlayer : KinematicBody2D
 
         if (Input.IsActionPressed("secondforward"))
         {
-            GD.Print("második előre");
             _acceleration = Transform.x * _enginePoser;
         }
         if (Input.IsActionPressed("secondbackward"))
         {
-            GD.Print("második hátra");
             _acceleration = Transform.x * _breaking;
         }
 
-        if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
+        if (Input.IsActionPressed("nitrous2") && allVariable.nitrous2 >= 1)
 		{
 				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/nitrouscar.png");
-				allVariable.nitrous--;
-				nitrousbar.Value = allVariable.nitrous;
+				allVariable.nitrous2--;
+				nitrousbar.Value = allVariable.nitrous2;
 				allVariable.speed = 1500;
 				rnd = new Random();
 				first = rnd.Next(-5, 5);
@@ -82,7 +90,7 @@ public class CarMultiPlayer : KinematicBody2D
 		}
 		else
 		{
-			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
+			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/Car1.png");
             allVariable.speed = 400;
 		}
     }

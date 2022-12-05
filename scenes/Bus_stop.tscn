@@ -8,19 +8,26 @@
 extents = Vector2( 30, 18 )
 
 [node name="Bus_stop" type="Node2D"]
+position = Vector2( 496, 115 )
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.1055, 0.1055 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Area2D"]
-position = Vector2( 7.15256e-07, 0 )
+position = Vector2( 5.68434e-14, 0 )
 scale = Vector2( 0.056, 0.027 )
 texture = ExtResource( 1 )
 

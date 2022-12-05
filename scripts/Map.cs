@@ -56,7 +56,7 @@ public class Map : Node2D
         //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
         red_circle = bus_StopN.GetNode("Sprite") as Sprite;
         }else{
-            bus_StopN = GetNode("../../Bus_stop") as Node2D;
+            bus_StopN = GetNode("../ViewportContainer/Viewport/Camera2D/Bus_stop") as Node2D;
             bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
             car_node = GetNode("../ViewportContainer/Viewport/Cars") as Node2D;
             car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;

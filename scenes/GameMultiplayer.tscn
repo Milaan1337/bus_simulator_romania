@@ -1,9 +1,9 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scripts/GameMultiplayer.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/CarsForMulti.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/Images/Background.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Nitrous.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Sound/IngameMusic.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/Images/HpUpper.png" type="Texture" id=6]
 [ext_resource path="res://assets/Images/backbutton.png" type="Texture" id=7]
@@ -15,6 +15,7 @@
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=13]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/SpikeStrip.tscn" type="PackedScene" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -52,9 +53,11 @@ render_target_update_mode = 3
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer/Viewport"]
 zoom = Vector2( 2, 2 )
 
-[node name="Background" type="Sprite" parent="VBoxContainer/ViewportContainer/Viewport/Camera2D"]
-position = Vector2( 603, 334 )
-texture = ExtResource( 4 )
+[node name="Nitrous" parent="VBoxContainer/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 4 )]
+
+[node name="Bus_stop" parent="VBoxContainer/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 15 )]
+
+[node name="SpikeStrip" parent="VBoxContainer/ViewportContainer/Viewport/Camera2D" instance=ExtResource( 16 )]
 
 [node name="Cars" parent="VBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 2 )]
 
@@ -184,8 +187,13 @@ handle_input_locally = false
 render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="VBoxContainer/ViewportContainer2/Viewport"]
-current = true
 zoom = Vector2( 6, 6 )
+
+[node name="Nitrous" parent="VBoxContainer/ViewportContainer2/Viewport/Camera2D" instance=ExtResource( 4 )]
+
+[node name="Bus_stop" parent="VBoxContainer/ViewportContainer2/Viewport/Camera2D" instance=ExtResource( 15 )]
+
+[node name="SpikeStrip" parent="VBoxContainer/ViewportContainer2/Viewport/Camera2D" instance=ExtResource( 16 )]
 
 [node name="CarMulti" parent="VBoxContainer/ViewportContainer2/Viewport" instance=ExtResource( 3 )]
 position = Vector2( 0, -1 )
@@ -247,8 +255,7 @@ wait_time = 1000.0
 autostart = true
 
 [node name="Map" parent="VBoxContainer" instance=ExtResource( 14 )]
-
-[node name="Bus_stop" parent="." instance=ExtResource( 15 )]
+visible = false
 
 [connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]

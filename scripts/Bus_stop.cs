@@ -18,6 +18,7 @@ public class Bus_stop : Node2D
 	public Timer timer;
 	public int t;
 	public int max_sec;
+	private AllVariable allVariable;
     public override void _Ready()
 	{
 		setPos();
@@ -25,15 +26,17 @@ public class Bus_stop : Node2D
 
 	public void setPos()
 	{
-		AllVariable allVariable = new AllVariable();
+		allVariable = new AllVariable();
 		position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 0);
 		//GD.Print(allVariable.maplength);
 		finish = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
 		if (!allVariable.singleplay){
-			car = GetNode("../VBoxContainer/ViewportContainer/Viewport/Cars") as Node2D;
-			timer = GetNode("../VBoxContainer/Timer") as Timer;
+			car = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars") as Node2D;
+			timer = GetNode("/root/Game/VBoxContainer/Timer") as Timer;
 			car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
+			car2 = GetNode("/root/Game/VBoxContainer/ViewportContainer2/Viewport/CarMulti") as Node2D;
+			car2_body = car2.GetNode("KinematicBody2D") as KinematicBody2D;
 		}else{
 			car = GetNode("/root/Game/Car") as Node2D;
 			timer = GetNode("/root/Game/Timer") as Timer;
@@ -42,12 +45,6 @@ public class Bus_stop : Node2D
 
 		finish.Position = position;
 		circle.Position = position;
-
-		if (allVariable.singleplay == false)
-		{
-			car2 = GetNode("/root/CarsForMulti/CarMulti") as Node2D;
-			car2_body = car2.GetNode("KinematicBody2D") as KinematicBody2D;
-		}
 	}
 
 	public void _on_Area2D_body_entered(object body)
@@ -57,19 +54,23 @@ public class Bus_stop : Node2D
 			case var value when value == car_body:
 				string text = File.ReadAllText(@"save/times.json");
 				var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-				AllVariable allVariable = new AllVariable();
+				allVariable = new AllVariable();
 				setPos();
 				//GD.Print(timer.WaitTime - timer.TimeLeft);
 				t = (int)timer.WaitTime - (int)timer.TimeLeft;
 				GD.Print(t);
 				allVariable.time = t;
 				if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+				allVariable.nyertauto = "Blue";
 				game_end();
-			break;
+				break;
 
 			case var value when value == car2_body:
-				GD.Print("kaka");
-			break;
+				allVariable.nyertauto = "Yellow";
+				t = (int)timer.WaitTime - (int)timer.TimeLeft;
+				GD.Print(t);
+				game_end();
+				break;
 		}
 	}
 	public void game_end()
