@@ -27,7 +27,7 @@ public class Menu : Node2D
 		MainMusic.VolumeDb = options.MusicVolume;
 
 		allVariable = new AllVariable();
-			
+		
 		switch (options.display_index)
 		{
 			case 0:
