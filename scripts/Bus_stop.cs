@@ -28,9 +28,16 @@ public class Bus_stop : Node2D
 		//GD.Print(allVariable.maplength);
 		bus_stop = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
-		car = GetNode("/root/Game/Car") as Node2D;
-		timer = GetNode("/root/Game/Timer") as Timer;
-		bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
+		if (!allVariable.singleplay){
+			car = GetNode("../VBoxContainer/ViewportContainer/Viewport/Cars") as Node2D;
+			timer = GetNode("../VBoxContainer/Timer") as Timer;
+			bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
+		}else{
+			car = GetNode("/root/Game/Car") as Node2D;
+			timer = GetNode("/root/Game/Timer") as Timer;
+			bus_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
+		}
+
 		bus_stop.Position = position;
 		circle.Position = position;
 	}

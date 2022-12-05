@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/GameMultiplayer.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://scripts/PausePanel.cs" type="Script" id=11]
 [ext_resource path="res://assets/Images/exitbutton.png" type="Texture" id=12]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 35
@@ -243,6 +245,10 @@ text = "HP"
 [node name="Timer" type="Timer" parent="VBoxContainer"]
 wait_time = 1000.0
 autostart = true
+
+[node name="Map" parent="VBoxContainer" instance=ExtResource( 14 )]
+
+[node name="Bus_stop" parent="." instance=ExtResource( 15 )]
 
 [connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="VBoxContainer/ViewportContainer/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]

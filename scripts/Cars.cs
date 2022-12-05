@@ -110,7 +110,7 @@ public class Cars : KinematicBody2D
 		else
 		{
 			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
-            allVariable.speed = 400;
+            //allVariable.speed = 400;
 		}
     }
 

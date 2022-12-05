@@ -111,7 +111,7 @@ public class Game : Node2D
 		}
 		else
 		{
-			allVariable.speed = 400;
+			//allVariable.speed = 400;
 			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
 		}
 		

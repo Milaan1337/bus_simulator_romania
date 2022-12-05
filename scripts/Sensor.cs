@@ -17,15 +17,13 @@ public class Sensor : Node2D
 
     public void _on_Area2D_body_entered(object body){
         if (body is KinematicBody2D){
-            GD.Print("cigany");
             allVariable.speed = 800;
         }
     }
 
     public void _on_Area2D_body_exited(object body){
-        GD.Print("cigany2");
         if (body is KinematicBody2D){
-            allVariable.speed = 1;
+            allVariable.speed = 500;
             GD.Print(allVariable.speed);
         }
     }

@@ -29,6 +29,7 @@ public class GameMultiplayer : Node2D
 	
 	public override void _Ready()
 	{
+		GD.Print(GetPath());
 		firstplayer = GetNode("VBoxContainer/ViewportContainer/Viewport/Cars/KinematicBody2D") as KinematicBody2D;
 		firstplayer.Set("type","player1");
 		GD.Print(firstplayer);

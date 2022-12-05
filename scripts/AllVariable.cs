@@ -1,7 +1,9 @@
+using System;
+using Godot;
 public class AllVariable
 {
     private static int nitrovalue;
-    private static int speedvalue;
+    private static int speedvalue = 400;
     private static int timevalue;
     private static int maplengthvalue;
     private static int hpvalue = 100;
@@ -16,7 +18,10 @@ public class AllVariable
     public int speed 
     {
         get { return speedvalue; }
-        set { speedvalue = value; }
+        set { 
+            speedvalue = value; 
+            GD.Print("CIGO ALLITVA");    
+        }
     }
     public int hp
     {
