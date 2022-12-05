@@ -7,11 +7,17 @@ public class AllVariable
     private static int hpvalue = 100;
     private static bool pauseonvalue = false;
     private static bool singleplayvalue = false;
+    private static string nyertautovalue;
 
     public int nitrous 
     {
         get { return nitrovalue; }
         set { nitrovalue = value; }
+    }
+    public string nyertauto 
+    {
+        get { return nyertautovalue; }
+        set { nyertautovalue = value; }
     }
     public int speed 
     {

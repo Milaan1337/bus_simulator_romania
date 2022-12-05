@@ -68,6 +68,23 @@ public class CarMultiPlayer : KinematicBody2D
             GD.Print("második hátra");
             _acceleration = Transform.x * _breaking;
         }
+
+        if (Input.IsActionPressed("nitrous") && allVariable.nitrous >= 1)
+		{
+				carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/nitrouscar.png");
+				allVariable.nitrous--;
+				nitrousbar.Value = allVariable.nitrous;
+				allVariable.speed = 1500;
+				rnd = new Random();
+				first = rnd.Next(-5, 5);
+				second = rnd.Next(-5, 5);
+				camera.SetOffset(new Vector2(first * shake, second * shake));
+		}
+		else
+		{
+			carsprite.Texture = (Texture)ResourceLoader.Load("res://assets/Images/car.png");
+            allVariable.speed = 400;
+		}
     }
 
 
