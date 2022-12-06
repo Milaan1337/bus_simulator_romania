@@ -23,7 +23,7 @@ public class Sensor : Node2D
 
     public void _on_Area2D_body_exited(object body){
         if (body is KinematicBody2D){
-            allVariable.speed = 500;
+            allVariable.speed = 100;
             GD.Print(allVariable.speed);
         }
     }
