@@ -9,7 +9,6 @@ public class spikestrip : Node2D
 {
     public AllVariable allVariable;
     public TextureProgress hpbar;
-    public TextureProgress hpbar2;
     public Camera2D camera;
     public Timer maintimer;
     public int shake = 1;
@@ -20,9 +19,7 @@ public class spikestrip : Node2D
     public float time;
     public int max_sec;
     public Node2D car;
-    public Node2D car2;
     public KinematicBody2D car_body;
-    public KinematicBody2D car2_body;
 
     public override void _Ready()
     {

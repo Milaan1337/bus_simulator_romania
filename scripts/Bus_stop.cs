@@ -8,15 +8,13 @@ using File = System.IO.File;
 public class Bus_stop : Node2D
 {
 	public Node2D car;
-	public Node2D car2;
 	public KinematicBody2D car_body;
-	public KinematicBody2D car2_body;
 	public Random rng;
 	public Timer timer;
 	public int t;
 	public int max_sec;
 	private AllVariable allVariable;
-    public override void _Ready()
+	public override void _Ready()
 	{
 		setPos();
 	}
@@ -29,7 +27,6 @@ public class Bus_stop : Node2D
 		timer = GetNode("/root/Game/Timer") as Timer;
 		car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 	}
-
 	public void _on_Area2D_body_entered(object body)
 	{	
 			string text = File.ReadAllText(@"save/times.json");
@@ -41,7 +38,7 @@ public class Bus_stop : Node2D
 			GD.Print(t);
 			allVariable.time = t;
 			if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
-			game_end();		
+			game_end();
 	}
 	public void game_end()
 	{
