@@ -171,6 +171,8 @@ wait_time = 4096.0
 [node name="Map" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2.99976, 13 )
 scale = Vector2( 4.1497, 4.88095 )
+spikestrip = null
+nitrous = null
 sensor = null
 
 [node name="Bus_stop" parent="." instance=ExtResource( 8 )]

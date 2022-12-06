@@ -25,7 +25,10 @@ public class Map : Node2D
     [Export]public PackedScene sensor;
     [Export]public int spike_chance = 5;
     [Export] public int nitrous_chance = 95;
-    public AllVariable allVariable = new AllVariable();
+    public Vector2 position;
+	public Area2D finish;
+	public Sprite circle;
+    public AllVariable allVariable;
     public enum dirtForm
     {
         oneBlock,
@@ -49,7 +52,9 @@ public class Map : Node2D
         if (mapLength < 5)
         {
             mapLength = 5;
-        }        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
+        }
+        allVariable = new AllVariable();        
+        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
         bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
         car_node = GetNode("/root/Game/Car") as Node2D;
         car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
@@ -103,6 +108,11 @@ public class Map : Node2D
         allVariable.maplength = mapLength;
         //GD.Print(allVariable.maplength);
         //GD.Print(mapLength);
+        position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 0);
+		finish = GetNode("/root/Game/Bus_stop/Area2D") as Area2D;
+		circle = GetNode("/root/Game/Bus_stop/Sprite") as Sprite;
+		finish.Position = position;
+		circle.Position = position;
     }
 
 

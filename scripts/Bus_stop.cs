@@ -7,13 +7,10 @@ using File = System.IO.File;
 
 public class Bus_stop : Node2D
 {
-	public Vector2 position;
-	public Area2D finish;
 	public Node2D car;
 	public Node2D car2;
 	public KinematicBody2D car_body;
 	public KinematicBody2D car2_body;
-	public Sprite circle;
 	public Random rng;
 	public Timer timer;
 	public int t;
@@ -27,16 +24,10 @@ public class Bus_stop : Node2D
 	public void setPos()
 	{
 		allVariable = new AllVariable();
-		position = new Vector2(-((allVariable.maplength * 8.28125f) *64), 0);
 		//GD.Print(allVariable.maplength);
-		finish = GetNode("Area2D") as Area2D;
-		circle = GetNode("Sprite") as Sprite;
 		car = GetNode("/root/Game/Car") as Node2D;
 		timer = GetNode("/root/Game/Timer") as Timer;
 		car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
-
-		finish.Position = position;
-		circle.Position = position;
 	}
 
 	public void _on_Area2D_body_entered(object body)
