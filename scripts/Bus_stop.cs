@@ -31,17 +31,9 @@ public class Bus_stop : Node2D
 		//GD.Print(allVariable.maplength);
 		finish = GetNode("Area2D") as Area2D;
 		circle = GetNode("Sprite") as Sprite;
-		if (!allVariable.singleplay){
-			car = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars") as Node2D;
-			timer = GetNode("/root/Game/VBoxContainer/Timer") as Timer;
-			car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
-			car2 = GetNode("/root/Game/VBoxContainer/ViewportContainer2/Viewport/CarMulti") as Node2D;
-			car2_body = car2.GetNode("KinematicBody2D") as KinematicBody2D;
-		}else{
-			car = GetNode("/root/Game/Car") as Node2D;
-			timer = GetNode("/root/Game/Timer") as Timer;
-			car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
-		}
+		car = GetNode("/root/Game/Car") as Node2D;
+		timer = GetNode("/root/Game/Timer") as Timer;
+		car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 
 		finish.Position = position;
 		circle.Position = position;
@@ -49,29 +41,16 @@ public class Bus_stop : Node2D
 
 	public void _on_Area2D_body_entered(object body)
 	{	
-		switch (body)
-		{
-			case var value when value == car_body:
-				string text = File.ReadAllText(@"save/times.json");
-				var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
-				allVariable = new AllVariable();
-				setPos();
-				//GD.Print(timer.WaitTime - timer.TimeLeft);
-				t = (int)timer.WaitTime - (int)timer.TimeLeft;
-				GD.Print(t);
-				allVariable.time = t;
-				if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
-				allVariable.nyertauto = "Blue";
-				game_end();
-				break;
-
-			case var value when value == car2_body:
-				allVariable.nyertauto = "Yellow";
-				t = (int)timer.WaitTime - (int)timer.TimeLeft;
-				GD.Print(t);
-				game_end();
-				break;
-		}
+			string text = File.ReadAllText(@"save/times.json");
+			var get_options = JsonConvert.DeserializeObject<ConfigBody>(text);
+			allVariable = new AllVariable();
+			setPos();
+			//GD.Print(timer.WaitTime - timer.TimeLeft);
+			t = (int)timer.WaitTime - (int)timer.TimeLeft;
+			GD.Print(t);
+			allVariable.time = t;
+			if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+			game_end();		
 	}
 	public void game_end()
 	{

@@ -46,25 +46,14 @@ public class Map : Node2D
         {
             mapLength = 5;
         }
-        if (allVariable.singleplay){
-            bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
-            bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
-            car_node = GetNode("/root/Game/Car") as Node2D;
-            car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
+        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
+        bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
+        car_node = GetNode("/root/Game/Car") as Node2D;
+        car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
         //GD.Print($"BUS_STOP1{bus_stop.Position.x}");
         //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
         //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
         red_circle = bus_StopN.GetNode("Sprite") as Sprite;
-        }else{
-            bus_StopN = GetNode("../ViewportContainer/Viewport/Camera2D/Bus_stop") as Node2D;
-            bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
-            car_node = GetNode("../ViewportContainer/Viewport/Cars") as Node2D;
-            car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
-            //GD.Print($"BUS_STOP1{bus_stop.Position.x}");
-            //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
-            //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
-            red_circle = bus_StopN.GetNode("Sprite") as Sprite;
-        }
         
         tileMap = GetNode("TileMap") as TileMap;
         tileSet = tileMap.TileSet;

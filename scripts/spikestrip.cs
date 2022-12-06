@@ -27,21 +27,9 @@ public class spikestrip : Node2D
     public override void _Ready()
     {
         allVariable = new AllVariable();
-        if (allVariable.singleplay)
-        {
-            hpbar = GetNode("../Car/HUD/HpBar") as TextureProgress;
-            camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
-            maintimer = GetNode("../Timer") as Timer;
-        }
-        else
-        {
-            hpbar = GetNode("/root/Game/VBoxContainer/ViewportContainer2/Viewport/Camera2D/SpikeStrip") as TextureProgress;
-            hpbar2 = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Camera2D/SpikeStrip") as TextureProgress;
-            car = GetNode("/root/Game/VBoxContainer/ViewportContainer/Viewport/Cars") as Node2D;
-            car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
-            car2 = GetNode("/root/Game/VBoxContainer/ViewportContainer2/Viewport/CarMulti") as Node2D;
-            car2_body = car2.GetNode("KinematicBody2D") as KinematicBody2D;
-        }
+        hpbar = GetNode("../Car/HUD/HpBar") as TextureProgress;
+        camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
+        maintimer = GetNode("../Timer") as Timer;
 
 
     }

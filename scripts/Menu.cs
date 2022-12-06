@@ -22,8 +22,6 @@ public class Menu : Node2D
 
 		click = GetNode("Click") as AudioStreamPlayer2D;
 		MainMusic = GetNode("MainMusic") as AudioStreamPlayer2D;
-		max_time = GetNode("max_time") as Label;
-		max_time.Text = $"Your best time: {TimeSpan.FromSeconds(options2.max_sec)}";
 		MainMusic.VolumeDb = options.MusicVolume;
 
 		allVariable = new AllVariable();
@@ -52,14 +50,12 @@ public class Menu : Node2D
 	public void _on_PlayButton_pressed()
 	{
 		click.Play();
-		allVariable.singleplay = true;
 		GetTree().ChangeScene("res://scenes/Game.tscn");
 	}
 
 	public void _on_PlayButton2_pressed()
 	{
 		click.Play();
-		allVariable.singleplay = false;
 		GetTree().ChangeScene("res://scenes/GameMultiplayer.tscn");
 	}
 
