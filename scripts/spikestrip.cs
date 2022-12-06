@@ -27,27 +27,18 @@ public class spikestrip : Node2D
     public override void _Ready()
     {
         allVariable = new AllVariable();
-        hpbar = GetNode("../Car/HUD/HpBar") as TextureProgress;
+        hpbar = GetNode("/root/Game/Car/HUD/HpBar") as TextureProgress;
         camera = GetNode("/root/Game/Car/KinematicBody2D/Camera2D") as Camera2D;
-        maintimer = GetNode("../Timer") as Timer;
+        maintimer = GetNode("/root/Game/Timer") as Timer;
 
 
     }
     public void _on_Area2D_body_entered(object body)
     {
-        switch (body)
-        {
-            case var value when value == car_body:
-                hpbar.Value = hpbar2.Value - 30;
-                break;
-            case var value when value == car2_body:
-                hpbar2.Value = hpbar2.Value - 30;
-                break;
-        }/*
         allVariable.hp -= 34;
         time = 0;
         time++;
-        hpbar.Value = allVariable.hp;*/
+        hpbar.Value = allVariable.hp;
     }
 
     public override void _Process(float delta)

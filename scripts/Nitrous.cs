@@ -13,7 +13,7 @@ public class Nitrous : Node2D
 	public override void _Ready()
 	{
 		allVariable = new AllVariable();
-		nitrousbar = GetNode("../Car/HUD/NitrousBar") as TextureProgress;
+		nitrousbar = GetNode("/root/Game/Car/HUD/NitrousBar") as TextureProgress;
 		car = GetNode("/root/Game/Car") as Node2D;
 		car_body = car.GetNode("KinematicBody2D") as KinematicBody2D;
 	}

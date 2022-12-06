@@ -183,9 +183,11 @@ wait_time = 100000.0
 autostart = true
 
 [node name="Nitrous" parent="." instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 537, 207 )
 
 [node name="SpikeStrip" parent="." instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 967, 211 )
 rotation = 1.5708
 scale = Vector2( 0.4, 0.5 )

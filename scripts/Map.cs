@@ -20,7 +20,11 @@ public class Map : Node2D
     public int tile_width = 64;
     public int tile_height = 64;
     public float multiplier = 8.28125f;
+    [Export]public PackedScene spikestrip;
+    [Export]public PackedScene  nitrous;
     [Export]public PackedScene sensor;
+    [Export]public int spike_chance = 5;
+    [Export] public int nitrous_chance = 95;
     public AllVariable allVariable = new AllVariable();
     public enum dirtForm
     {
@@ -45,8 +49,7 @@ public class Map : Node2D
         if (mapLength < 5)
         {
             mapLength = 5;
-        }
-        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
+        }        bus_StopN = GetNode("/root/Game/Bus_stop") as Node2D;
         bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
         car_node = GetNode("/root/Game/Car") as Node2D;
         car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
@@ -270,10 +273,27 @@ public class Map : Node2D
                 tileMap.SetCell(oszlop,(int)positions[i].y,0);
             }
             if (type == "dirt"){
+                // Area2D sensor
                 Node2D sensorChild1 = (Node2D)sensor.Instance();        
                 sensorChild1.Position = pos_to_place;
                 sensorChild1.Set("type","dirt");
                 AddChild(sensorChild1);
+                //
+
+                //Szarok
+                int randomNum = randomObject.Next(0,101);
+                if (randomNum < spike_chance){
+                    Node2D spikeChild = (Node2D)spikestrip.Instance();
+                    spikeChild.Position = pos_to_place;
+                    spikeChild.Scale = new Vector2(0.1f,0.1f);
+                    AddChild(spikeChild);
+                }else if (randomNum > nitrous_chance){
+                    Node2D nitrousChild = (Node2D)nitrous.Instance();
+                    nitrousChild.Position = pos_to_place;
+                    nitrousChild.Scale = new Vector2(0.3f,0.3f);
+                    AddChild(nitrousChild);
+                }
+                //
             }
            
         }
