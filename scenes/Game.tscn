@@ -1,11 +1,9 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scripts/Game.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Car.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/SpikeStrip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Map.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Sound/EngineSound.ogg" type="AudioStream" id=5]
-[ext_resource path="res://scenes/Nitrous.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/Sound/IngameMusic.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/Bus_stop.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Fonts/Adventuro.ttf" type="DynamicFontData" id=9]
@@ -183,16 +181,6 @@ scale = Vector2( 0.5, 0.5 )
 [node name="Timer" type="Timer" parent="."]
 wait_time = 100000.0
 autostart = true
-
-[node name="Nitrous" parent="." instance=ExtResource( 6 )]
-visible = false
-position = Vector2( 537, 207 )
-
-[node name="SpikeStrip" parent="." instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 967, 211 )
-rotation = 1.5708
-scale = Vector2( 0.4, 0.5 )
 
 [connection signal="pressed" from="Car/HUD/PausePanel/return" to="." method="_on_return_pressed"]
 [connection signal="pressed" from="Car/HUD/PausePanel/quit" to="." method="_on_quit_pressed"]

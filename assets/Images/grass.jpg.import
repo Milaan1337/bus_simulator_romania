@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/OptionsButton.png-6a60e89fdff95461567906f85040b130.stex"
+path="res://.import/grass.jpg-6363fd147b0b0e6612eb83de51d810c3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Images/OptionsButton.png"
-dest_files=[ "res://.import/OptionsButton.png-6a60e89fdff95461567906f85040b130.stex" ]
+source_file="res://assets/Images/grass.jpg"
+dest_files=[ "res://.import/grass.jpg-6363fd147b0b0e6612eb83de51d810c3.stex" ]
 
 [params]
 

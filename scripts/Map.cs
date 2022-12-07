@@ -58,6 +58,7 @@ public class Map : Node2D
         bus_stop = bus_StopN.GetNode("Area2D") as Area2D;
         car_node = GetNode("/root/Game/Car") as Node2D;
         car = car_node.GetNode("KinematicBody2D") as KinematicBody2D;
+        car_node.Position = new Vector2(200,(1.8f*tile_height)*multiplier);
         //GD.Print($"BUS_STOP1{bus_stop.Position.x}");
         //TODO Mi a gyászért ír totális faszságot a getpos egyik helyen 186 a másikon már 286 és nem lehet állítani a poziciojat
         //TODO Ahol a dirt-t rakjuk le ott egy 1/(előre beállított eséllyel) lerak egy tárgyat(nitró,coin), egybe nem lehet mindkettő
