@@ -47,6 +47,7 @@ nitrous = ExtResource( 6 )
 sensor = ExtResource( 4 )
 
 [node name="Grass" type="Sprite" parent="."]
+visible = false
 position = Vector2( 36514.5, 12380.3 )
 scale = Vector2( 37.0145, 25.3248 )
 texture = ExtResource( 7 )
