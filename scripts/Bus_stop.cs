@@ -14,6 +14,7 @@ public class Bus_stop : Node2D
 	public int t;
 	public int max_sec;
 	private AllVariable allVariable;
+	private int timebase = 10;
 	public override void _Ready()
 	{
 		setPos();
@@ -37,7 +38,8 @@ public class Bus_stop : Node2D
 			t = (int)timer.WaitTime - (int)timer.TimeLeft;
 			GD.Print(t);
 			allVariable.time = t;
-			if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+			float eredmeny = (((float)timebase / (float)allVariable.maplength) * get_options.max_sec);
+            if (eredmeny > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
 			game_end();
 	}
 	public void game_end()

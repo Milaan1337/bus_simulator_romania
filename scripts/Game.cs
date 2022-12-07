@@ -52,7 +52,7 @@ public class Game : Node2D
 		carsprite = GetNode("/root/Game/Car/KinematicBody2D/Sprite") as Sprite;
 
 		allVariable.hp = 100;
-		allVariable.nitrous = 0;
+		allVariable.nitrous = 1;
 		
 		if(get_options.vsync_is_on == true)OS.VsyncEnabled = true; else OS.VsyncEnabled = false;
 
@@ -130,7 +130,7 @@ public class Game : Node2D
     }
 	public override void _Process(float delta)
 	{
-		if (fps_is_on == true)
+        if (fps_is_on == true)
 		{
 			Fps.Text = $"{Convert.ToInt32(1 / delta)} FPS";
 		}

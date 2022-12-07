@@ -11,6 +11,7 @@ public class Timeout : Node2D
     private AllVariable allVariable;
     private Label winner;
     private Label endlabel;
+    private int timebase = 10;
     
     public override void _Ready()
     {
@@ -20,10 +21,11 @@ public class Timeout : Node2D
         endlabel = GetNode("/root/Timeout/endlabel") as Label;
         timelabel = GetNode("Earn") as Label;
         personal_record = GetNode("personal_record") as Label;
-        timelabel.Text = $"Your time: {TimeSpan.FromSeconds(allVariable.time)}";
-        personal_record.Text = $"Your best time: {TimeSpan.FromSeconds((get_options.max_sec))}";
+        float nemegesz = (float)timebase / (float)allVariable.maplength;
+        timelabel.Text = $"Your time: {((float)timebase / (float)allVariable.maplength) * allVariable.time} sec";
+        personal_record.Text = $"Your best time: {((float)timebase / (float)allVariable.maplength) * get_options.max_sec} sec";
         endlabel.Text = $"Legközelebb biztos jobban sikerül.";
-    }
+        }
     public void _on_BackToMenu_pressed() 
     {
         GetTree().ChangeScene("res://scenes/Menu.tscn");

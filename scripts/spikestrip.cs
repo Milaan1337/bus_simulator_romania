@@ -20,6 +20,7 @@ public class spikestrip : Node2D
     public int max_sec;
     public Node2D car;
     public KinematicBody2D car_body;
+    private int timebase = 10;
 
     public override void _Ready()
     {
@@ -52,7 +53,8 @@ public class spikestrip : Node2D
             allVariable = new AllVariable();
             t = (int)maintimer.WaitTime - (int)maintimer.TimeLeft;
             allVariable.time = t;
-            if (get_options.max_sec > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
+            float eredmeny = (((float)timebase / (float)allVariable.maplength) * get_options.max_sec);
+            if (eredmeny > t) { max_sec = t; }else { max_sec = get_options.max_sec; }
             game_end();
         }
         

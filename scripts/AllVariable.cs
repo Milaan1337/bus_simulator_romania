@@ -17,10 +17,7 @@ public class AllVariable
     public int speed 
     {
         get { return speedvalue; }
-        set { 
-            speedvalue = value; 
-            GD.Print("CIGO ALLITVA");    
-        }
+        set { speedvalue = value; }
     }
     public int hp
     {
