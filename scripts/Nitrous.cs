@@ -21,6 +21,8 @@ public class Nitrous : Node2D
 	{
 		allVariable.nitrous = 100;
 		nitrousbar.Value = allVariable.nitrous;
+        QueueFree();
+
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

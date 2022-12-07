@@ -37,6 +37,7 @@ public class spikestrip : Node2D
         time = 0;
         time++;
         hpbar.Value = allVariable.hp;
+
     }
 
     public override void _Process(float delta)

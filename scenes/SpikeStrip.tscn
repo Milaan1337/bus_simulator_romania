@@ -10,7 +10,7 @@ extents = Vector2( 234.5, 26 )
 script = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 29, 240 )
+position = Vector2( 50, 240 )
 rotation = 1.5708
 scale = Vector2( 0.5, 1 )
 __meta__ = {
